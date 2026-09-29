@@ -453,66 +453,38 @@ table RELATORIO_NILVANA
 		mode: import
 		source =
 				let
+				    // Conecta ao banco e busca a tabela do schema public
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    Tabela_Banco = Fonte{[Schema="public", Item="RELATORIO_NILVANA"]}[Data],
 				
-				    Fonte = Csv.Document(
-				        Web.Contents(
-				            "https://docs.google.com/spreadsheets/d/e/2PACX-1vTppzv11fNkbjEP_lAhRQ0XS4C3LgEJZRPoAG_gCF4pamHqDVLow29_DW0ZiwwzT5Mdz89N0L-u-hdU/pub?output=csv"
-				        ),
-				        [
-				            Delimiter = ",",
-				            Columns = 19,
-				            Encoding = 65001,
-				            QuoteStyle = QuoteStyle.None
-				        ]
-				    ),
-				
-				    #"Cabeçalhos Promovidos" =
-				        Table.PromoteHeaders(
-				            Fonte,
-				            [PromoteAllScalars = true]
-				        ),
-				
-				    #"Tipo Alterado" =
-				        Table.TransformColumnTypes(
-				            #"Cabeçalhos Promovidos",
-				            {
-				                {"COD EMPRESA", Int64.Type},
-				                {"EMPRESA", type text},
-				                {"COD COL", Int64.Type},
-				                {"CRACHA", Int64.Type},
-				                {"NOME ", type text},
-				                {"INICIO COMPETENCIA", type date},
-				                {"FIM COMPENTENCIA", type date},
-				                {"COD CONTRATO", Int64.Type},
-				                {"DATA DE ADIMISSÃO ", type date},
-				                {"SITUAÇÃO", type text},
-				                {"DATA DEMISSÃO", type text},
-				                {"COD DO CARGO", Int64.Type},
-				                {"CARGO", type text},
-				                {"CATEGORIA", type text},
-				                {"COD CENTRO DE CUSTO", Int64.Type},
-				                {"DESCRIÇÃO CENTRO DE CISTO", type text},
-				                {"COD LOCAL", Int64.Type},
-				                {"DESCRIÇÃO LOCAL ", type text}
-				            }
-				        ),
-				
-				    #"SK Colaborador Adicionado" =
-				        Table.AddColumn(
-				            #"Tipo Alterado",
-				            "sk_colaborador",
-				            each
-				                Text.From([COD EMPRESA]) & "-" &
-				                Text.From([COD COL]) & "-" &
-				                Text.From([CRACHA]),
-				            type text
-				        ),
-				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"SK Colaborador Adicionado",{{"DATA DEMISSÃO", type date}}),
-				    #"Erros Substituídos" = Table.ReplaceErrorValues(#"Tipo Alterado1", {{"DATA DEMISSÃO", null}})
-				
+				    // Tipagem exata para manter 100% de compatibilidade com o DAX
+				    #"Tipo Alterado" = Table.TransformColumnTypes(
+				        Tabela_Banco,
+				        {
+				            {"COD EMPRESA", Int64.Type},
+				            {"EMPRESA", type text},
+				            {"COD COL", Int64.Type},
+				            {"CRACHA", Int64.Type},
+				            {"NOME ", type text},
+				            {"INICIO COMPETENCIA", type date},
+				            {"FIM COMPENTENCIA", type date},
+				            {"COD CONTRATO", Int64.Type},
+				            {"DATA DE ADIMISSÃO ", type date},
+				            {"SITUAÇÃO", type text},
+				            {"DATA DEMISSÃO", type date},
+				            {"COD DO CARGO", Int64.Type},
+				            {"CARGO", type text},
+				            {"CATEGORIA", type text},
+				            {"COD CENTRO DE CUSTO", Int64.Type},
+				            {"DESCRIÇÃO CENTRO DE CISTO", type text},
+				            {"COD LOCAL", Int64.Type},
+				            {"DESCRIÇÃO LOCAL ", type text},
+				            {"STATUS", type text},
+				            {"sk_colaborador", type text}
+				        }
+				    )
 				in
-				
-				    #"Erros Substituídos"
+				    #"Tipo Alterado"
 
 	annotation PBI_NavigationStepName = Navegação
 

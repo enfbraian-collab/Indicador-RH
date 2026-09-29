@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "482cc722d98a66e47b23",
   "position": {
     "x": 819.72196478220576,
@@ -251,23 +251,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "55f7fa7ad6aec50d1002",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public fato_apuracao"
-              }
-            },
-            "Property": "4Taxa Absenteísmo mês"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "5609f1ff8b4d538ee40d",
   "position": {
     "x": 866.83304617205317,
@@ -247,42 +247,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "940677caca9293877d70",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Atestados"
-              }
-            },
-            "Property": "Canal de envio"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3e18ba10ee10abcec77b",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Atestados"
-                  }
-                },
-                "Property": "Canal de envio"
-              }
-            },
-            "Function": 5
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

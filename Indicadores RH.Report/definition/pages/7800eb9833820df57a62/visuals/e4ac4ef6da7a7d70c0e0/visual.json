@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "e4ac4ef6da7a7d70c0e0",
   "position": {
     "x": 1085.5169777664521,
@@ -42,7 +42,7 @@
                     "Entity": "public dim_colaborador"
                   }
                 },
-                "Property": "4Média Turnover Mensal Nilvana"
+                "Property": "4Turnover Mensal % Nilvana"
               }
             },
             "direction": "Descending"

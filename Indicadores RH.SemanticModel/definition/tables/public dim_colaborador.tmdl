@@ -642,7 +642,7 @@ table 'public dim_colaborador'
 			)
 		formatString: 0
 		lineageTag: 817cda19-b3e8-44e5-90b0-62bd94477cdf
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 

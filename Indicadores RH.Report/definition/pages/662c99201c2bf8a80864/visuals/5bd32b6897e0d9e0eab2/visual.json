@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "5bd32b6897e0d9e0eab2",
   "position": {
     "x": 291.95863332896977,
@@ -315,56 +315,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b05b86643dab415bce30",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Atestados"
-              }
-            },
-            "Property": "Mês"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c92812b8686b9cc36420",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Atestados"
-                  }
-                },
-                "Property": "Protocolo"
-              }
-            },
-            "Function": 5
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c3fc588f073159bb76a9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Atestados"
-              }
-            },
-            "Property": "Tempo Médio em Dias"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

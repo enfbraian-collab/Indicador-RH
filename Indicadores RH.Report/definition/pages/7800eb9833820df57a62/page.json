@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "7800eb9833820df57a62",
   "displayName": "TurnOver",
   "displayOption": "FitToPage",
@@ -52,69 +52,6 @@
                           {
                             "Literal": {
                               "Value": "null"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'set/2025'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'set/2026'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'out/2025'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'out/2026'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'nov/2025'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'nov/2026'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'dez/2025'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'dez/2026'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'ago/2026'"
                             }
                           }
                         ]

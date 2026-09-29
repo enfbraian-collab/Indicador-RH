@@ -218,3 +218,32 @@ relationship 0a36eaa3-42df-85df-eb58-4d7516a2e4c5
 	fromColumn: 'public dim_colaborador'.Data_admissao_real
 	toColumn: 'public.dCalendario'.Date
 
+relationship 2967c061-8b8e-48ff-985d-afcc7caa1e56
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA(1).'INICIO COMPETENCIA'
+	toColumn: LocalDateTable_c2bf5b3b-e044-4d94-9506-0d91aee014f8.Date
+
+relationship e5401f4f-83f8-4d23-a8f9-3a8a430f3164
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA(1).'FIM COMPENTENCIA'
+	toColumn: LocalDateTable_2f0c951e-4e9f-4d28-a239-f0a9d69bd292.Date
+
+relationship 8233a22c-b233-4a12-a618-f186f60b252f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA(1).'DATA DE ADIMISSÃO '
+	toColumn: LocalDateTable_39fd7da2-5ac6-4bfb-a898-6224ee4d651d.Date
+
+relationship 7288aec7-a4e1-49a9-9040-2fd05566d96c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA(1).'DATA DEMISSÃO'
+	toColumn: LocalDateTable_47ecd965-4555-4e17-9b2d-8a436d156799.Date
+
+relationship AutoDetected_32b893a0-5364-4a3a-94a9-8f5f44a25d0c
+	fromColumn: RELATORIO_NILVANA(1).sk_colaborador
+	toColumn: 'public dim_colaborador'.sk_colaborador
+
+relationship AutoDetected_ce8d00a8-34d1-4f04-b606-4254aecae4d6
+	isActive: false
+	fromColumn: RELATORIO_NILVANA(1).'COD EMPRESA'
+	toColumn: 'public dim_empresa'.id_cod_empresa
+

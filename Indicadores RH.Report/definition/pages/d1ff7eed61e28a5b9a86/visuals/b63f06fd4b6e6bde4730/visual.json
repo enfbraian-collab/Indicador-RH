@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "b63f06fd4b6e6bde4730",
   "position": {
     "x": 11.862835959221501,
     "y": 593.141797961075,
-    "z": 23007,
+    "z": 24000,
     "height": 91.343836886005562,
     "width": 237.25671918443,
-    "tabOrder": 23007
+    "tabOrder": 24000
   },
   "visual": {
     "visualType": "slicer",
@@ -84,13 +84,54 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "'braian'"
+                            "Value": "'wemb'"
                           }
                         }
                       }
                     },
                     "Annotations": {
                       "PowerBI.MParameterBehavior": 1
+                    }
+                  }
+                ]
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "p",
+                    "Entity": "public dim_colaborador",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
+                                }
+                              },
+                              "Property": "nome_funcionario"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'WEMBLEY MACEDO DOS SANTOS'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
                     }
                   }
                 ]

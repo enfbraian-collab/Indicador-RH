@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "d42dcc64a25682aa52db",
   "position": {
     "x": 0,
@@ -281,51 +281,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3093f32ad58e377e00bd",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public fato_apuracao"
-              }
-            },
-            "Property": "4Taxa Absenteísmo mês"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f436d1f2e0216a002987",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public dim_situacao_apuracao"
-              }
-            },
-            "Property": "descricao_situacao"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7d6b186f0690e4604a66",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public fato_apuracao"
-              }
-            },
-            "Property": "4Horas Absenteismo"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

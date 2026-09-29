@@ -1,0 +1,204 @@
+table RELATORIO_NILVANA(1)
+	lineageTag: 361c3761-4f5f-4dc4-99b1-1301d8f4db59
+
+	column 'COD EMPRESA'
+		dataType: int64
+		formatString: 0
+		lineageTag: f036211e-22e7-4102-8c59-6956fddcb96e
+		summarizeBy: sum
+		sourceColumn: COD EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMPRESA
+		dataType: string
+		lineageTag: 82f00abc-ec74-4642-8fcd-4ead41e3e844
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD COL'
+		dataType: string
+		lineageTag: c8184791-b9ae-4359-ba87-a8bf82a5ff4e
+		summarizeBy: none
+		sourceColumn: COD COL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CRACHA
+		dataType: int64
+		formatString: 0
+		lineageTag: ef99c599-94cf-41e7-8c1a-a93f2cfa1cbe
+		summarizeBy: sum
+		sourceColumn: CRACHA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOME '
+		dataType: string
+		lineageTag: dc1a3dca-747f-4242-9c19-88b0f6395d54
+		summarizeBy: none
+		sourceColumn: "NOME "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INICIO COMPETENCIA'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9f6c0ab3-c8ac-45e4-9a7b-52ba619679df
+		summarizeBy: none
+		sourceColumn: INICIO COMPETENCIA
+
+		variation Variation
+			isDefault
+			relationship: 2967c061-8b8e-48ff-985d-afcc7caa1e56
+			defaultHierarchy: LocalDateTable_c2bf5b3b-e044-4d94-9506-0d91aee014f8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FIM COMPENTENCIA'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dd233335-219d-49e2-bc94-a67d616b853f
+		summarizeBy: none
+		sourceColumn: FIM COMPENTENCIA
+
+		variation Variation
+			isDefault
+			relationship: e5401f4f-83f8-4d23-a8f9-3a8a430f3164
+			defaultHierarchy: LocalDateTable_2f0c951e-4e9f-4d28-a239-f0a9d69bd292.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD CONTRATO'
+		dataType: int64
+		formatString: 0
+		lineageTag: bb524825-f487-497a-b210-1d7ddfbf34af
+		summarizeBy: sum
+		sourceColumn: COD CONTRATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATA DE ADIMISSÃO '
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1968f5f5-a6c4-4bcc-9039-889596922690
+		summarizeBy: none
+		sourceColumn: "DATA DE ADIMISSÃO "
+
+		variation Variation
+			isDefault
+			relationship: 8233a22c-b233-4a12-a618-f186f60b252f
+			defaultHierarchy: LocalDateTable_39fd7da2-5ac6-4bfb-a898-6224ee4d651d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SITUAÇÃO
+		dataType: string
+		lineageTag: ff2379ad-f164-48a2-9621-8db228bf9e76
+		summarizeBy: none
+		sourceColumn: SITUAÇÃO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATA DEMISSÃO'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9443195e-5ab5-4dac-8ccc-ac91a5c5f72a
+		summarizeBy: none
+		sourceColumn: DATA DEMISSÃO
+
+		variation Variation
+			isDefault
+			relationship: 7288aec7-a4e1-49a9-9040-2fd05566d96c
+			defaultHierarchy: LocalDateTable_47ecd965-4555-4e17-9b2d-8a436d156799.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD DO CARGO'
+		dataType: string
+		lineageTag: e5c838eb-474a-46af-b4b7-4ebb2080bd0d
+		summarizeBy: none
+		sourceColumn: COD DO CARGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARGO
+		dataType: string
+		lineageTag: 61eeb509-0169-4470-ba51-835ed9ca03ec
+		summarizeBy: none
+		sourceColumn: CARGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORIA
+		dataType: string
+		lineageTag: 104d5f67-51fa-4899-ab32-062b162b3547
+		summarizeBy: none
+		sourceColumn: CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD CENTRO DE CUSTO'
+		dataType: string
+		lineageTag: 2217ba4c-c122-4756-951a-c9b6393d4ed0
+		summarizeBy: none
+		sourceColumn: COD CENTRO DE CUSTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DESCRIÇÃO CENTRO DE CISTO'
+		dataType: string
+		lineageTag: d89eff3b-b83e-47ab-a3b5-2f972d7b10c2
+		summarizeBy: none
+		sourceColumn: DESCRIÇÃO CENTRO DE CISTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD LOCAL'
+		dataType: int64
+		formatString: 0
+		lineageTag: bd54c9f0-3065-4ebe-b241-214ce8aa4f1f
+		summarizeBy: sum
+		sourceColumn: COD LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DESCRIÇÃO LOCAL '
+		dataType: string
+		lineageTag: bca96f3e-1a56-4aa9-a5a6-d382d12aa22e
+		summarizeBy: none
+		sourceColumn: "DESCRIÇÃO LOCAL "
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: 094f123f-8bc7-418e-baae-88b3e7421455
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: c37df4e1-48c0-4a18-9089-73de161fe71b
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RELATORIO_NILVANA(1) = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_RELATORIO_NILVANA = Fonte{[Schema="public",Item="RELATORIO_NILVANA"]}[Data]
+				in
+				    public_RELATORIO_NILVANA
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
