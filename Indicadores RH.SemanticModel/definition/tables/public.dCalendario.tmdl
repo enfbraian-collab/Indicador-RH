@@ -1,0 +1,187 @@
+table 'public.dCalendario'
+	lineageTag: ddec1405-0816-49b0-b3b1-e93bcf49099f
+
+	measure 'Diagnostico Limite Calendario' =
+			
+			VAR UltimaData =
+			    CALCULATE (
+			        MAX ( 'public fato_apuracao'[data_apuracao] ),
+			        ALL ( 'public fato_apuracao' )
+			    )
+			RETURN
+			    UltimaData - 1
+		formatString: General Date
+		lineageTag: ba2d838a-c662-4b3d-b9c2-820244fde7a1
+
+	column Date
+		formatString: General Date
+		lineageTag: cad4e24b-6599-41fa-9c8a-929da6995c41
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: ff9362b8-23c8-46f2-80ff-a66350da7c2c
+			defaultHierarchy: LocalDateTable_bfd5589d-df74-4935-b7e3-971e568c5b0d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes =
+			
+			YEAR('public.dCalendario'[date]) * 100
+			    + MONTH('public.dCalendario'[date])
+		formatString: 0
+		lineageTag: 23b47129-6a34-40d7-9124-8bb6f9390b7d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ordem Dia da Semana' =
+			
+			WEEKDAY('public.dCalendario'[Date], 1)
+		formatString: 0
+		lineageTag: 39566460-f6af-4e85-ac50-c9f62b1b5920
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '4Dia da Semana' =
+			
+			SWITCH(
+			    WEEKDAY('public.dCalendario'[Date], 1),
+			    1, "Domingo",
+			    2, "Segunda-feira",
+			    3, "Terça-feira",
+			    4, "Quarta-feira",
+			    5, "Quinta-feira",
+			    6, "Sexta-feira",
+			    7, "Sábado"
+			)
+		lineageTag: d87b8d3a-f29b-4254-9506-bab98adb1bc5
+		summarizeBy: none
+		sortByColumn: 'Ordem Dia da Semana'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Competencia =
+			
+			FORMAT(
+			    'public.dCalendario'[Date],
+			    "MMM/yyyy",
+			    "pt-BR"
+			)
+		lineageTag: 446edae7-66c5-4773-985a-ce063412bab4
+		summarizeBy: none
+		sortByColumn: 'Mês Número'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: 30753cf9-0db9-4284-a7b0-daa97886532a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Número'
+		formatString: 0
+		lineageTag: befbdadc-c5e5-4ac2-a0ea-23b161ee0d96
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mês Número]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Nome'
+		lineageTag: 1bd656b0-36b1-4753-bbb8-2f53e65da86d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês Nome]
+		sortByColumn: 'Mês Número'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês/Ano
+		lineageTag: 21038b0f-c919-400e-b154-b69456d2bfac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês/Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ano Mês Int'
+		formatString: 0
+		lineageTag: 90761fec-4b52-4cb9-b29e-b59fb23a33d6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano Mês Int]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 0d212524-a764-4d91-97a0-5522c2359ea0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		formatString: 0
+		lineageTag: 972af39a-8bf5-440e-afc9-4a090b274f41
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da Semana'
+		formatString: 0
+		lineageTag: be5310fb-e9b5-4418-afbe-77150a800fb1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia da Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da Semana Nome'
+		lineageTag: c05f071a-1221-4dcc-9e07-2286f78f72db
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia da Semana Nome]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public.dCalendario' = calculated
+		mode: import
+		source =
+				
+				
+				VAR vDataInicial =
+				    DATE ( 2025, 1, 1 )
+				
+				// TEMPORÁRIO: calendário travado até 20/09/2026
+				VAR vDataFinal =
+				    DATE ( 2026, 9, 20 )
+				
+				RETURN
+				
+				ADDCOLUMNS (
+				    CALENDAR ( vDataInicial, vDataFinal ),
+				
+				    "Ano", YEAR ( [Date] ),
+				    "Mês Número", MONTH ( [Date] ),
+				    "Mês Nome", FORMAT ( [Date], "MMMM" ),
+				    "Mês/Ano", FORMAT ( [Date], "MMM/YYYY" ),
+				    "Ano Mês Int", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				    "Trimestre", "T" & QUARTER ( [Date] ),
+				    "Dia", DAY ( [Date] ),
+				    "Dia da Semana", WEEKDAY ( [Date] ),
+				    "Dia da Semana Nome", FORMAT ( [Date], "dddd" )
+				)
+
+	annotation PBI_Id = a76d1b4e4bfb43219525cf4ddb904ad2
+

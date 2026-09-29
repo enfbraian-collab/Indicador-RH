@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "09feab16c146cf5f838b",
+  "position": {
+    "x": 1063.7119113573408,
+    "y": 14.182825484764543,
+    "z": 6000,
+    "height": 128.82733148661126,
+    "width": 203.28716528162511,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "3Turnover Acumulado Ano %"
+                }
+              },
+              "queryRef": "public dim_colaborador.3Turnover Acumulado Ano %",
+              "nativeQueryRef": "3Turnover Acumulado Ano %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public dim_colaborador"
+                  }
+                },
+                "Property": "3Turnover Acumulado Ano %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

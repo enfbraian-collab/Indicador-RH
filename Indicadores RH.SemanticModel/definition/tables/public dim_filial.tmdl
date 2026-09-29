@@ -1,0 +1,36 @@
+table 'public dim_filial'
+	lineageTag: 9b5d524f-a5d1-48c6-80e7-fd5255d350b4
+
+	column id_cod_filial
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b6f3df7-39a9-4d88-8bf6-944ce447f2d1
+		summarizeBy: none
+		sourceColumn: id_cod_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_filial
+		dataType: string
+		lineageTag: edb7af53-d1d7-4a3c-a0e6-76f57b6a26ea
+		summarizeBy: none
+		sourceColumn: descricao_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_filial' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_filial = Fonte{[Schema="public",Item="dim_filial"]}[Data],
+				    #"Duplicatas Removidas" = Table.Distinct(public_dim_filial, {"id_cod_filial"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"id_cod_filial", Int64.Type}}),
+				    #"Duplicatas Removidas1" = Table.Distinct(#"Tipo Alterado", {"id_cod_filial"})
+				in
+				    #"Duplicatas Removidas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

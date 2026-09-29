@@ -1,0 +1,57 @@
+expression _medidas_turnover =
+		let
+		    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+		    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+		in
+		    #"Colunas Removidas"
+	lineageTag: 305769ef-f861-44ce-ae6e-c44a120c290e
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression '_Medidas_turnover (2)' =
+		let
+		    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}}),
+		    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Coluna 1"})
+		in
+		    #"Colunas Removidas"
+	lineageTag: 4e243e3c-0f97-4ab4-b1a6-b382744ceb38
+
+	annotation PBI_ResultType = Table
+
+expression 'Erros em public fato_apuracao' =
+		let
+		Fonte = #"public fato_apuracao",
+		  #"Incompatibilidades de Tipo Detectadas" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Fonte, Table.ColumnsOfType(Fonte, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "O tipo do valor não corresponde ao tipo da coluna.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Fonte, pairs),
+		  #"Índice Adicionado" = Table.AddIndexColumn(#"Incompatibilidades de Tipo Detectadas", "Número da Linha" ,1),
+		  #"Erros Mantidos" = Table.SelectRowsWithErrors(#"Índice Adicionado", {"sk_colaborador", "data_apuracao", "id_cod_empresa", "id_tipo_colaborador", "cracha", "id_situacao_apuracao", "salario_base", "flag_absenteismo", "apuracao_formatada", "quantidade_horas_minutos", "codigo_escala", "id_centro_custo", "id_cargo"}),
+		  #"Colunas Reordenadas" = Table.ReorderColumns(#"Erros Mantidos", {"Número da Linha", "sk_colaborador", "data_apuracao", "id_cod_empresa", "id_tipo_colaborador", "cracha", "id_situacao_apuracao", "salario_base", "flag_absenteismo", "apuracao_formatada", "quantidade_horas_minutos", "codigo_escala", "id_centro_custo", "id_cargo"})
+		in
+		  #"Colunas Reordenadas"
+	lineageTag: 302299d3-2a6a-4af0-8b62-708808f89d8f
+	queryGroup: 'Erros na Consulta - 09/08/2026 13:05:17'
+
+	annotation PBI_NavigationStepName = Navegação
+
+expression 'public dim_apuracao_situacao' =
+		let
+		    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+		    public_dim_apuracao_situacao = Fonte{[Schema="public",Item="dim_apuracao_situacao"]}[Data]
+		in
+		    public_dim_apuracao_situacao
+	lineageTag: 291727a6-e64a-4a52-9e3a-86df7869d97e
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

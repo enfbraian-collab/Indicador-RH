@@ -1,0 +1,383 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "e0c260c08cbc71616a3b",
+  "displayName": "Absenteísmo Estagiario",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "44fc9b0b7876942fcb09",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "public fato_apuracao"
+              }
+            },
+            "Property": "flag_absenteismo"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "public fato_apuracao",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "flag_absenteismo"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Sim'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "59ac6f76c54c2baf46fd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "public dim_cargo"
+              }
+            },
+            "Property": "descricao_cargo"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "public dim_cargo",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "descricao_cargo"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'ESTAGIARIO ENSINO MEDIO'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'ESTAGIARIO ENSINO SUPERIOR'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'MENOR APRENDIZ'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "f836ff7d6629afcca3a3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "public dim_centro_custo"
+              }
+            },
+            "Property": "descricao_centro_custo"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "public dim_centro_custo",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "p"
+                              }
+                            },
+                            "Property": "descricao_centro_custo"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.3
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Slide1.PNG'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Slide17357476213058993.PNG"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "302L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "85a84b6600643460fd86",
+      "target": "7c8569071708ab0782f4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "85a84b6600643460fd86",
+      "target": "1a1218b866c46676a62b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "85a84b6600643460fd86",
+      "target": "a9eaf15b0d35b01a1859",
+      "type": "DataFilter"
+    },
+    {
+      "source": "85a84b6600643460fd86",
+      "target": "927da4baeaa3191d3ad8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9eaf15b0d35b01a1859",
+      "target": "7c8569071708ab0782f4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9eaf15b0d35b01a1859",
+      "target": "1a1218b866c46676a62b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9eaf15b0d35b01a1859",
+      "target": "927da4baeaa3191d3ad8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9eaf15b0d35b01a1859",
+      "target": "85a84b6600643460fd86",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7c8569071708ab0782f4",
+      "target": "1a1218b866c46676a62b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7c8569071708ab0782f4",
+      "target": "927da4baeaa3191d3ad8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7c8569071708ab0782f4",
+      "target": "85a84b6600643460fd86",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7c8569071708ab0782f4",
+      "target": "a9eaf15b0d35b01a1859",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1a1218b866c46676a62b",
+      "target": "85a84b6600643460fd86",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1a1218b866c46676a62b",
+      "target": "a9eaf15b0d35b01a1859",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1a1218b866c46676a62b",
+      "target": "7c8569071708ab0782f4",
+      "type": "DataFilter"
+    }
+  ]
+}

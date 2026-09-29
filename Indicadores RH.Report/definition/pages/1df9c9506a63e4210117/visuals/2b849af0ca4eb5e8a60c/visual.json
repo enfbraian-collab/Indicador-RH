@@ -1,0 +1,90 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "2b849af0ca4eb5e8a60c",
+  "position": {
+    "x": 656.38025594149906,
+    "y": 142.74223034734916,
+    "z": 10000,
+    "height": 232.83363802559413,
+    "width": 472.68738574040219,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "descricao_centro_custo"
+                }
+              },
+              "queryRef": "public dim_colaborador.descricao_centro_custo",
+              "nativeQueryRef": "descricao_centro_custo",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas_turnover (3)"
+                    }
+                  },
+                  "Property": "% Turnover por Centro de Custo (Historico)"
+                }
+              },
+              "queryRef": "_Medidas_turnover (3).% Turnover por Centro de Custo (Historico)",
+              "nativeQueryRef": "% Turnover por Centro de Custo (Historico)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas_turnover (3)"
+                  }
+                },
+                "Property": "% Turnover por Centro de Custo (Historico)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

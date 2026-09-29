@@ -1,0 +1,101 @@
+table 'public fato_historico_cargo'
+	lineageTag: 580c5ea1-9ff5-4c80-8557-8c56b41b7ff0
+
+	column id_cod_empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: dde4f84c-dfdd-4454-bd96-ae3178b5b363
+		summarizeBy: sum
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_colaborador
+		dataType: int64
+		formatString: 0
+		lineageTag: ec5674fc-c698-450b-8d4d-8e941008eb70
+		summarizeBy: sum
+		sourceColumn: id_tipo_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column cracha
+		dataType: int64
+		formatString: 0
+		lineageTag: aad136e8-7db7-4806-a862-acb9da394ceb
+		summarizeBy: sum
+		sourceColumn: cracha
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cargo
+		dataType: int64
+		formatString: 0
+		lineageTag: 44d1724b-5634-456b-bd8f-5c0999dd572b
+		summarizeBy: sum
+		sourceColumn: id_cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_cargo
+		dataType: string
+		lineageTag: 932c420c-2dcb-433a-9ae4-4b17d2051abb
+		summarizeBy: none
+		sourceColumn: descricao_cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_inicio_cargo
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d264ce41-c9c5-406a-82a8-eb9e5671e028
+		summarizeBy: none
+		sourceColumn: data_inicio_cargo
+
+		variation Variation
+			isDefault
+			relationship: 0c587899-c273-4e72-ba9a-a77ee4ad06e7
+			defaultHierarchy: LocalDateTable_89f50c3d-caed-40b2-a764-93615cb6515b.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_fim_cargo
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6020cbe5-83de-4a38-bff6-f779a9c74130
+		summarizeBy: none
+		sourceColumn: data_fim_cargo
+
+		variation Variation
+			isDefault
+			relationship: 80040571-f61d-4850-afe0-05977361b66d
+			defaultHierarchy: LocalDateTable_43b3318a-dd9a-468f-84c8-1189c7806c05.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: 2316b9ec-f83d-47b3-8c3c-650d2b10aa06
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public fato_historico_cargo' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_fato_historico_cargo = Fonte{[Schema="public",Item="fato_historico_cargo"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(public_fato_historico_cargo,{{"id_cod_empresa", Int64.Type}, {"id_tipo_colaborador", Int64.Type}, {"cracha", Int64.Type}, {"id_cargo", Int64.Type}, {"data_inicio_cargo", type date}, {"data_fim_cargo", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

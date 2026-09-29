@@ -1,0 +1,37 @@
+table 'public dim_raca'
+	lineageTag: dafbb0e3-83f1-43dc-903b-5fdaf18f706f
+
+	column id_raca
+		dataType: int64
+		lineageTag: 96994a79-6158-410d-913a-d26fd9068498
+		summarizeBy: none
+		sourceColumn: id_raca
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descricao_raca
+		dataType: string
+		lineageTag: 010db3fe-f987-42c8-9fd4-dc909ea08777
+		summarizeBy: none
+		sourceColumn: descricao_raca
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_raca' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_raca = Fonte{[Schema="public",Item="dim_raca"]}[Data],
+				    #"Valor Substituído" = Table.ReplaceValue(public_dim_raca,null,"nao declarado",Replacer.ReplaceValue,{"descricao_raca"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído",{{"id_raca", Int64.Type}}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Tipo Alterado", {"id_raca"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

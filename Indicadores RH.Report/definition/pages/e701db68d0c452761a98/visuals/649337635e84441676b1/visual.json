@@ -1,0 +1,218 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "649337635e84441676b1",
+  "position": {
+    "x": 348.33468724614136,
+    "y": 437.75792038992694,
+    "z": 0,
+    "height": 251.63281884646631,
+    "width": 459.59382615759546,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "nome_funcionario"
+                }
+              },
+              "queryRef": "public dim_colaborador.nome_funcionario",
+              "nativeQueryRef": "nome_funcionario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "id_tipo_colaborador"
+                }
+              },
+              "queryRef": "Sum(public fato_apuracao.id_tipo_colaborador)",
+              "nativeQueryRef": "id_tipo_colaborador"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "codigo_escala"
+                }
+              },
+              "queryRef": "public fato_apuracao.codigo_escala",
+              "nativeQueryRef": "codigo_escala"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "data_apuracao"
+                }
+              },
+              "queryRef": "public fato_apuracao.data_apuracao",
+              "nativeQueryRef": "data_apuracao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "id_situacao_apuracao"
+                }
+              },
+              "queryRef": "public fato_apuracao.id_situacao_apuracao",
+              "nativeQueryRef": "id_situacao_apuracao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_situacao_apuracao"
+                    }
+                  },
+                  "Property": "descricao_situacao"
+                }
+              },
+              "queryRef": "public dim_situacao_apuracao.descricao_situacao",
+              "nativeQueryRef": "descricao_situacao"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "quantidade_horas_minutos"
+                }
+              },
+              "queryRef": "Sum(public fato_apuracao.quantidade_horas_minutos)",
+              "nativeQueryRef": "quantidade_horas_minutos"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "apuracao_formatada"
+                }
+              },
+              "queryRef": "public fato_apuracao.apuracao_formatada",
+              "nativeQueryRef": "apuracao_formatada"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public dim_colaborador"
+                  }
+                },
+                "Property": "nome_funcionario"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92.98457652994801D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(public fato_apuracao.quantidade_horas_minutos)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.4971653230981D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "public fato_apuracao.id_situacao_apuracao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.12428021557056D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "public fato_apuracao.data_apuracao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.72136474411047D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "public dim_situacao_apuracao.descricao_situacao"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "39e7bf570d144a37ba09",
+  "position": {
+    "x": 0,
+    "y": 493.41400172860847,
+    "z": 10000,
+    "height": 169.26534140017284,
+    "width": 178.11581676750217,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_colaborador"
+                        }
+                      },
+                      "Property": "4Demissoes"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(public dim_colaborador.4Demissoes)",
+              "nativeQueryRef": "Soma de 4Demissoes"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "public dim_colaborador"
+                      }
+                    },
+                    "Property": "4Demissoes"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

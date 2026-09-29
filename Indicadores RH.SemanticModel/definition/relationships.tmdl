@@ -1,0 +1,220 @@
+relationship 4681a61b-055d-4e21-85b0-8874e2e40cf7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public dim_colaborador'.data_nascimento
+	toColumn: LocalDateTable_02fdf47a-0807-482c-8795-6092f3d22b44.Date
+
+relationship 93277d2e-232b-434a-ba9b-9d857b023bfd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public dim_colaborador'.data_demissao
+	toColumn: LocalDateTable_6d4b0701-bc1b-4113-98e4-6426f5f4dc50.Date
+
+relationship AutoDetected_81fd66ae-b581-483b-9bbe-d81c4e431f58
+	fromColumn: 'public dim_colaborador'.id_tipo_contrato
+	toColumn: 'public dim_tipo_contrato'.id_tipo_contrato
+
+relationship AutoDetected_524d674e-64ef-4589-89f8-c904bc06ec90
+	fromColumn: 'public dim_colaborador'.id_estado_cv
+	toColumn: 'public dim_estado_civil'.id_estado_cv
+
+relationship AutoDetected_f3eb8d6e-f809-493d-bfa1-666fbda1509c
+	fromColumn: 'public dim_colaborador'.id_raca
+	toColumn: 'public dim_raca'.id_raca
+
+relationship AutoDetected_a405fd77-03ff-44f9-aa05-3f379faadd92
+	fromColumn: 'public dim_colaborador'.id_situacao
+	toColumn: 'public dim_situacao'.id_situacao
+
+relationship 1403d39e-b5a1-0fa7-0b9a-bef5edb3af0d
+	fromColumn: 'public dim_colaborador'.id_cod_empresa
+	toColumn: 'public dim_empresa'.id_cod_empresa
+
+relationship 10369325-400e-89af-0230-fb05c70a71f3
+	fromColumn: 'public dim_colaborador'.id_tipo_colaborador
+	toColumn: 'public dim_tipo_colaborador'.id_tipo_colaborador
+
+relationship 3bc13d49-a590-db8c-4b75-2bca97b2fe89
+	fromColumn: 'public dim_colaborador'.id_cod_filial
+	toColumn: 'public dim_filial'.id_cod_filial
+
+relationship 0329962d-af96-9dff-2bce-2c7bbee0941e
+	fromColumn: 'public fato_apuracao'.id_situacao_apuracao
+	toColumn: 'public dim_situacao_apuracao'.id_situacao_apuracao
+
+relationship 77e43e4d-9d16-c64a-65a3-041a201eb915
+	fromColumn: 'public fato_apuracao'.id_cargo
+	toColumn: 'public dim_cargo'.id_cargo
+
+relationship c75653dd-6bf2-b694-feb9-a1f72c1d46c8
+	fromColumn: 'public fato_apuracao'.id_centro_custo
+	toColumn: 'public dim_centro_custo'.id_centro_custo
+
+relationship 41d3b97e-8895-2f1d-aebd-cbd87dba0299
+	fromColumn: 'public fato_apuracao'.codigo_escala
+	toColumn: 'public dim_escala'.codigo_escala
+
+relationship f4f0ba16-de99-4231-5dfa-1b379885eaef
+	fromColumn: 'public fato_apuracao'.sk_colaborador
+	toColumn: 'public dim_colaborador'.sk_colaborador
+
+relationship 0c587899-c273-4e72-ba9a-a77ee4ad06e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_cargo'.data_inicio_cargo
+	toColumn: LocalDateTable_89f50c3d-caed-40b2-a764-93615cb6515b.Date
+
+relationship 80040571-f61d-4850-afe0-05977361b66d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_cargo'.data_fim_cargo
+	toColumn: LocalDateTable_43b3318a-dd9a-468f-84c8-1189c7806c05.Date
+
+relationship ca3557e7-c227-4661-b2a2-29de3b375b3a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_ccusto'.data_inicio_cc
+	toColumn: LocalDateTable_760452df-3be0-4b46-84b8-e400e4af3f76.Date
+
+relationship 62bd24b2-a65e-4f36-9488-1b798dc7c017
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_ccusto'.data_fim_cc
+	toColumn: LocalDateTable_f9ff3bf2-0d6c-4ffd-b036-99c223648efa.Date
+
+relationship 670ea376-d822-45de-8309-ceeadefbc079
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_local'.data_inicio_local
+	toColumn: LocalDateTable_6a07f93e-32e6-4e61-8b52-84e5d2a62a96.Date
+
+relationship 953f9eb4-4b9a-4c60-a97a-80a648297f37
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_local'.data_fim_local
+	toColumn: LocalDateTable_1d6aefb6-765c-4401-8790-5e4c1c1e73f9.Date
+
+relationship 427bc8ee-d3c1-a3c5-1ee4-b4c9f3a409eb
+	fromColumn: 'public fato_historico_cargo'.sk_colaborador
+	toColumn: 'public dim_colaborador'.sk_colaborador
+
+relationship 61a376c8-02a3-361e-9713-e5637593a0a9
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'public fato_historico_ccusto'.sk_colaborador
+	toColumn: 'public dim_colaborador'.sk_colaborador
+
+relationship c86c762e-9270-64cd-cb87-f7f195262de5
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'public fato_historico_local'.sk_colaborador
+	toColumn: 'public dim_colaborador'.sk_colaborador
+
+relationship 2e79a18f-658b-492c-975e-2779545676e3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA.'INICIO COMPETENCIA'
+	toColumn: LocalDateTable_1b0b4ecd-e2ad-4473-bb2a-dbb3d8513b3f.Date
+
+relationship 9d27d880-9b11-433b-966e-7111d609717f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA.'FIM COMPENTENCIA'
+	toColumn: LocalDateTable_df01d4c3-c95f-403a-85c4-78d25fc18cf4.Date
+
+relationship acb3e880-d1b3-4254-bc68-138b46c30108
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA.'DATA DE ADIMISSÃO '
+	toColumn: LocalDateTable_95b56848-6a7d-45ee-9e18-58d4fdbbfdce.Date
+
+relationship c2c2494f-abd2-4ffc-a777-67001dbb5ab6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: RELATORIO_NILVANA.'DATA DEMISSÃO'
+	toColumn: LocalDateTable_aee76725-e47c-43b8-ad67-347f57ca0da4.Date
+
+relationship b8bd3b94-8e0a-46d2-8e8e-95544cd69a7a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Atestados.'Data da admissão'
+	toColumn: LocalDateTable_59a10d65-e2b1-4b85-9cab-03c6669d4371.Date
+
+relationship fbaa02e1-52c8-410d-a1a6-9e85d247742f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Atestados.'Data do Documento'
+	toColumn: LocalDateTable_7b33034a-a8c9-4112-b747-1f179a21e4c8.Date
+
+relationship 6834a862-d514-4be3-97f1-92b0c283aa37
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Atestados.'Data/Hora de Inicio'
+	toColumn: LocalDateTable_c435cf5d-cac2-428d-ac05-9da09236211e.Date
+
+relationship cb879ed0-ec83-44be-a721-058dcd6a031a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Atestados.'Data/Hora de Fim'
+	toColumn: LocalDateTable_37f75e6d-b7d8-4a98-a73b-771667d0ed3e.Date
+
+relationship 7ec9021f-5bc9-efe7-4c79-6d3cc3dbff4f
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Atestados.Matricula
+	toColumn: RELATORIO_NILVANA.CRACHA
+
+relationship c6dda0ec-95a1-9a76-8f02-a2cb7ded7209
+	crossFilteringBehavior: bothDirections
+	fromColumn: Atestados.CIDs
+	toColumn: Descrição_CIDs.CID
+
+relationship 58c095ac-fe73-4708-8488-818caa57d09c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_afastamento'.data_afastamento
+	toColumn: LocalDateTable_ed1b8ae7-2467-4d9b-b243-b3b87a38bdc9.Date
+
+relationship 8100437e-3ee9-4c3e-acdd-7411f5d5bcac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_afastamento'.data_termino_afastamento
+	toColumn: LocalDateTable_c77db5ca-35ec-40e2-acf9-86036c6174e8.Date
+
+relationship 786a3f98-e134-4b93-bb08-ccb8966b6d59
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_afastamento'.data_prev_termino_afastamento
+	toColumn: LocalDateTable_6c3e71f3-6445-4f9f-9226-41b2117d2e16.Date
+
+relationship 3a7c42b5-6cff-4b87-a583-a21c2f33c2ad
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_situacao'.data_inicio_situacao
+	toColumn: LocalDateTable_b9286272-6a06-4130-9236-6f6cd1ea6959.Date
+
+relationship 695217ce-f69f-415d-8ce5-0f1b4707139f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public fato_historico_situacao'.data_fim_situacao
+	toColumn: LocalDateTable_cc916da4-8062-44b2-93a0-0a0cf8ad8594.Date
+
+relationship AutoDetected_0407a7ad-7375-4084-96f6-5db56ea2b6cf
+	fromColumn: 'public fato_afastamento'.sk_colaborador
+	toColumn: 'public dim_colaborador'.sk_colaborador
+
+relationship AutoDetected_bea2918b-4a9c-48b0-8d01-2f6a5044bedd
+	fromColumn: 'public fato_historico_situacao'.id_situacao
+	toColumn: 'public dim_situacao'.id_situacao
+
+relationship 39b65000-715d-40ef-9794-cb331c0821e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ControleCarga.DATA_CARGA
+	toColumn: LocalDateTable_fdcaad0e-b294-430b-aad8-9bbf53abddee.Date
+
+relationship cbb528ae-d4d2-4fec-9f5e-b6bb4df7a0b5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ControleCarga.DATA_HORA_CARGA
+	toColumn: LocalDateTable_54db9150-4a2c-484a-a2d3-bb6276362f20.Date
+
+relationship ff9362b8-23c8-46f2-80ff-a66350da7c2c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public.dCalendario'.Date
+	toColumn: LocalDateTable_bfd5589d-df74-4935-b7e3-971e568c5b0d.Date
+
+relationship 8e802f5d-03f5-fb69-8ecf-15f992df96c2
+	isActive: false
+	fromColumn: 'public dim_colaborador'.data_admissao
+	toColumn: 'public.dCalendario'.Date
+
+relationship b2ab60b4-b8a1-1f0b-a388-817543454450
+	fromColumn: 'public fato_apuracao'.data_apuracao
+	toColumn: 'public.dCalendario'.Date
+
+relationship 59cb414c-ada3-b978-7061-3a1d6d5a8d3a
+	isActive: false
+	fromColumn: 'public dim_colaborador'.demissao_real
+	toColumn: 'public.dCalendario'.Date
+
+relationship 0a36eaa3-42df-85df-eb58-4d7516a2e4c5
+	isActive: false
+	fromColumn: 'public dim_colaborador'.Data_admissao_real
+	toColumn: 'public.dCalendario'.Date
+

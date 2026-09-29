@@ -1,0 +1,1250 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Limpar Absent Estagiarios",
+  "name": "bed55ed163c52615803f",
+  "options": {
+    "targetVisualNames": [
+      "6ed942933508fa22e1d1"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ee72686c4e6987d48232",
+    "sections": {
+      "ee72686c4e6987d48232": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "44fc9b0b7876942fcb09",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "p",
+                    "Entity": "public fato_apuracao",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
+                                }
+                              },
+                              "Property": "flag_absenteismo"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Sim'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public fato_apuracao"
+                    }
+                  },
+                  "Property": "flag_absenteismo"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "59ac6f76c54c2baf46fd",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "p",
+                    "Entity": "public dim_cargo",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "p"
+                                }
+                              },
+                              "Property": "descricao_cargo"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'ESTAGIARIO ENSINO MEDIO'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'ESTAGIARIO ENSINO SUPERIOR'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_cargo"
+                    }
+                  },
+                  "Property": "descricao_cargo"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "f836ff7d6629afcca3a3",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "p",
+                    "Entity": "public dim_centro_custo",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "p"
+                                    }
+                                  },
+                                  "Property": "descricao_centro_custo"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_centro_custo"
+                    }
+                  },
+                  "Property": "descricao_centro_custo"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "05824e90302184a88b4d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4363d5abf0236afd1d0e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6e16d9e22d9392c8a5ec",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Custo Absenteísmo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "1bcc04bc1d3face5dd27": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "25a97db02cc591df6458": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "2e441d20d116615b4096": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4ad14246a55234dd3ac8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "41a64a08ff7805468d4c": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "4a0f6a0c86c64bc8f6b8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "261b2ed66dfadbf4d8dd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_centro_custo"
+                        }
+                      },
+                      "Property": "descricao_centro_custo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_centro_custo"
+                        }
+                      },
+                      "Property": "descricao_centro_custo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "60015971ddf4ac3e0262": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "527bc76cf2d8755f621f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_situacao_apuracao"
+                        }
+                      },
+                      "Property": "Periodo Apuracao"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5bec752d7ac42a09dc10",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pieChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_situacao_apuracao"
+                        }
+                      },
+                      "Property": "Periodo Apuracao"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "61cdec35564663600709": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4998e4b7b9da7e18834b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "4Dia da Semana"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a005a788fa26aad47485",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "4Dia da Semana"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6ed942933508fa22e1d1": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "6ee46025fbe6fa8422e7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e8cc38630d1dd0a56461",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_cargo"
+                        }
+                      },
+                      "Property": "descricao_cargo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_cargo"
+                        }
+                      },
+                      "Property": "descricao_cargo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8f7ae4685240b212ca20": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "28d65dc0108410c69ae7",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "public.dCalendario",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "d"
+                                        }
+                                      },
+                                      "Property": "Mês Nome"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "90b781e00d67ac312dda": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9234152b0d09c90edb64",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "17c1c254ce0c38bcadce",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineClusteredColumnComboChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "a9d1788912a8c822a87c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e0bbd55d236decf88761",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Horas Absenteismo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Horas Absenteismo"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "b0b178b551d04d35f24f": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "b375bb2c44557be6b868": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e4b3764f5eb458a40490",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Custo Absenteísmo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Custo Absenteísmo"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "bbe05e5938ba7b7c9c9c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f09e10df407bc7b799ec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Mês Nome"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "260e5dbbea7df3d0e159",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Horas Previstas Pessoa Mês"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3d9c78adb0710ddaaa0a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Horas Absenteismo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "687680fbc41420bd1480",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Taxa Absenteísmo mês"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c7cdeccbfca83eb62c04": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "d1cfdca0ff5a2721772e": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "e11cba438c6528cb8d0d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "535f653e9dfcc4a19d5e",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "p",
+                        "Entity": "public dim_colaborador",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "p"
+                                        }
+                                      },
+                                      "Property": "nome_funcionario"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_colaborador"
+                        }
+                      },
+                      "Property": "nome_funcionario"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_colaborador"
+                        }
+                      },
+                      "Property": "nome_funcionario"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ec3ee397c21252f18c0e": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "f31e17674060e621503a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b0707de9dde2488d7b41",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Horas Previstas Pessoa Mês"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public fato_apuracao"
+                        }
+                      },
+                      "Property": "4Horas Previstas Pessoa Mês"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f56001691092167c54ed": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e9a8b6d17c8076a81336",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "public.dCalendario",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "d"
+                                        }
+                                      },
+                                      "Property": "Ano"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Ano"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "d",
+                                "Entity": "public.dCalendario",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "d"
+                                            }
+                                          },
+                                          "Property": "Ano"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2026L"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public.dCalendario"
+                        }
+                      },
+                      "Property": "Ano"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "f7141e6a71b6d54df33f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "41c2fb5a8eb05fec5768",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_centro_custo"
+                        }
+                      },
+                      "Property": "Instituição CC"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "public dim_centro_custo"
+                        }
+                      },
+                      "Property": "Instituição CC"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "fa3618c7e50f19d83556": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

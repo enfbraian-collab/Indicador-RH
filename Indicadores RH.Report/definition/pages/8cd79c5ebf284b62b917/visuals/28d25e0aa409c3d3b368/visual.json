@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "28d25e0aa409c3d3b368",
+  "position": {
+    "x": 256.66378565254968,
+    "y": 463.54364736387208,
+    "z": 11000,
+    "height": 199.13569576490923,
+    "width": 492.30769230769232,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RELATORIO_NILVANA"
+                    }
+                  },
+                  "Property": "EMPRESA"
+                }
+              },
+              "queryRef": "RELATORIO_NILVANA.EMPRESA",
+              "nativeQueryRef": "EMPRESA",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "3Turnover Mensal %"
+                }
+              },
+              "queryRef": "public dim_colaborador.3Turnover Mensal %",
+              "nativeQueryRef": "3Turnover Mensal %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public dim_colaborador"
+                  }
+                },
+                "Property": "3Turnover Mensal %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "40L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

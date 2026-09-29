@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "d01d2c31a703164e0713",
+  "position": {
+    "x": 772.62073825139578,
+    "y": 10.360814497624082,
+    "z": 4000,
+    "height": 261.98059515420891,
+    "width": 433.674092543408,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "advancedSlicerVisual",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_situacao_apuracao"
+                    }
+                  },
+                  "Property": "id_situacao_apuracao"
+                }
+              },
+              "queryRef": "public dim_situacao_apuracao.id_situacao_apuracao",
+              "nativeQueryRef": "id_situacao_apuracao"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {}
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

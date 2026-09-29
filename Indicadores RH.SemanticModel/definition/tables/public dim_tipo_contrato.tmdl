@@ -1,0 +1,36 @@
+table 'public dim_tipo_contrato'
+	lineageTag: 0b7d246c-4056-4d94-a0ea-5bbed103bf03
+
+	column id_tipo_contrato
+		dataType: int64
+		lineageTag: b2c02087-03fd-4428-8a77-662421891e72
+		summarizeBy: none
+		sourceColumn: id_tipo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descricao_contrato
+		dataType: string
+		lineageTag: 54641f71-d7e2-437b-8595-35bcbd8e3147
+		summarizeBy: none
+		sourceColumn: descricao_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_tipo_contrato' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_tipo_contrato = Fonte{[Schema="public",Item="dim_tipo_contrato"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(public_dim_tipo_contrato,{{"id_tipo_contrato", Int64.Type}}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Tipo Alterado", {"id_tipo_contrato"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

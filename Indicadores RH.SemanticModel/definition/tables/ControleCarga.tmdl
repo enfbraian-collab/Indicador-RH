@@ -1,0 +1,56 @@
+table ControleCarga
+	lineageTag: 080f8349-f95a-4161-9fc1-54fdebfadbf8
+
+	column DATA_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1cd2969f-9322-484e-a718-a005a1ab07db
+		summarizeBy: none
+		sourceColumn: DATA_CARGA
+
+		variation Variation
+			isDefault
+			relationship: 39b65000-715d-40ef-9794-cb331c0821e5
+			defaultHierarchy: LocalDateTable_fdcaad0e-b294-430b-aad8-9bbf53abddee.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DATA_HORA_CARGA
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f1bdbfc2-1f75-4c9e-a00c-7f1ff60522ba
+		summarizeBy: none
+		sourceColumn: DATA_HORA_CARGA
+
+		variation Variation
+			isDefault
+			relationship: cbb528ae-d4d2-4fec-9f5e-b6bb4df7a0b5
+			defaultHierarchy: LocalDateTable_54db9150-4a2c-484a-a2d3-bb6276362f20.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ControleCarga = m
+		mode: import
+		source =
+				let
+				    DataHoraCarga = DateTime.LocalNow(),
+				    DataCarga = Date.From(DataHoraCarga),
+				
+				    Fonte = #table(
+				        type table [
+				            DATA_CARGA = date,
+				            DATA_HORA_CARGA = datetime
+				        ],
+				        {
+				            {DataCarga, DataHoraCarga}
+				        }
+				    )
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "af7473efb9b5b481175c",
+  "position": {
+    "x": 369.72577696526508,
+    "y": 0,
+    "z": 4000,
+    "height": 136.11940298507463,
+    "width": 197.01492537313433,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas_turnover (3)"
+                    }
+                  },
+                  "Property": "Demissoes"
+                }
+              },
+              "queryRef": "_Medidas_turnover (3).Demissoes",
+              "nativeQueryRef": "Demissoes"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas_turnover (3)"
+                  }
+                },
+                "Property": "Demissoes"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas_turnover (3).Demissoes"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

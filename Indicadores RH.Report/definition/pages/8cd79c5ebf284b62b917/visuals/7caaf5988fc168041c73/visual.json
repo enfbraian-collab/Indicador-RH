@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "7caaf5988fc168041c73",
+  "position": {
+    "x": 632.31763619575258,
+    "y": 14.182825484764543,
+    "z": 1000,
+    "height": 128.82733148661126,
+    "width": 203.28716528162511,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "3Demissoes"
+                }
+              },
+              "queryRef": "public dim_colaborador.1Demissões teste",
+              "nativeQueryRef": "3Demissoes"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public dim_colaborador"
+                  }
+                },
+                "Property": "3Demissoes"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

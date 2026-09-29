@@ -1,0 +1,520 @@
+table RELATORIO_NILVANA
+	lineageTag: 02a4319f-6459-4187-8106-28b867bff0fd
+
+	measure '4Admissões Nilvana' =
+			
+			VAR DataInicial =
+			    MIN('public.dCalendario'[Date])
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'RELATORIO_NILVANA',
+			
+			        'RELATORIO_NILVANA'[DATA DE ADIMISSÃO ] >= DataInicial
+			            &&
+			        'RELATORIO_NILVANA'[DATA DE ADIMISSÃO ] <= DataFinal
+			
+			            &&
+			
+			        NOT(
+			            'RELATORIO_NILVANA'[DATA DEMISSÃO] >= DataInicial
+			                &&
+			            'RELATORIO_NILVANA'[DATA DEMISSÃO] <= DataFinal
+			        )
+			    ),
+			
+			    'RELATORIO_NILVANA'[COD EMPRESA] = 1,
+			    'RELATORIO_NILVANA'[COD CONTRATO] = 1
+			)
+		formatString: 0
+		lineageTag: b4d0ae4e-1d16-409a-941e-e657c1218557
+
+	measure '4Demissoes Nilvana' =
+			
+			VAR DataInicial =
+			    MIN('public.dCalendario'[Date])
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'RELATORIO_NILVANA',
+			        NOT(ISBLANK('RELATORIO_NILVANA'[DATA DEMISSÃO]))
+			            &&
+			        'RELATORIO_NILVANA'[DATA DEMISSÃO] >= DataInicial
+			            &&
+			        'RELATORIO_NILVANA'[DATA DEMISSÃO] <= DataFinal
+			    ),
+			
+			    'RELATORIO_NILVANA'[COD EMPRESA] = 1
+			)
+		formatString: 0
+		lineageTag: 2017e474-f08c-4a83-a214-2dd7f4688f3c
+
+	measure '4Ativos Competência4' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'RELATORIO_NILVANA',
+			
+			        'RELATORIO_NILVANA'[DATA DE ADIMISSÃO ] <= DataFinal
+			            &&
+			        (
+			            ISBLANK('RELATORIO_NILVANA'[DATA DEMISSÃO])
+			                ||
+			            'RELATORIO_NILVANA'[DATA DEMISSÃO] > DataFinal
+			        )
+			    ),
+			
+			    'RELATORIO_NILVANA'[COD EMPRESA] = 1,
+			    'RELATORIO_NILVANA'[COD CONTRATO] = 1
+			)
+		formatString: 0
+		lineageTag: e563392a-63fb-4d9f-ba65-ff602addb49e
+
+	measure '4Saldo Final Colaboradores Nilvana' =
+			
+			VAR DataSelecionada =
+			    MAX('public.dCalendario'[Date])
+			
+			VAR PeriodoAtual =
+			    DATE(
+			        YEAR(DataSelecionada),
+			        MONTH(DataSelecionada),
+			        1
+			    )
+			
+			VAR PrimeiroPeriodo =
+			    CALCULATE(
+			        MIN('RELATORIO_NILVANA'[INICIO COMPETENCIA]),
+			
+			        REMOVEFILTERS(
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA],
+			            'RELATORIO_NILVANA'[FIM COMPENTENCIA],
+			            'RELATORIO_NILVANA'[STATUS]
+			        ),
+			
+			        'RELATORIO_NILVANA'[STATUS] <> "Demitido no mesmo mês"
+			    )
+			
+			VAR AtivosInicial =
+			    CALCULATE(
+			        DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			        REMOVEFILTERS(
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA],
+			            'RELATORIO_NILVANA'[FIM COMPENTENCIA],
+			            'RELATORIO_NILVANA'[STATUS]
+			        ),
+			
+			        FILTER(
+			            'RELATORIO_NILVANA',
+			
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA] = PrimeiroPeriodo
+			                &&
+			            UPPER(TRIM('RELATORIO_NILVANA'[STATUS])) = "ATIVO"
+			                &&
+			            UPPER(TRIM('RELATORIO_NILVANA'[STATUS])) <> "DEMITIDO NO MESMO MÊS"
+			        )
+			    )
+			
+			VAR AdmissoesAcumuladas =
+			    CALCULATE(
+			        DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			        REMOVEFILTERS(
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA],
+			            'RELATORIO_NILVANA'[FIM COMPENTENCIA],
+			            'RELATORIO_NILVANA'[STATUS]
+			        ),
+			
+			        FILTER(
+			            'RELATORIO_NILVANA',
+			
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA] >= PrimeiroPeriodo
+			                &&
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA] < PeriodoAtual
+			                &&
+			            CONTAINSSTRING(
+			                UPPER(TRIM('RELATORIO_NILVANA'[STATUS])),
+			                "ADMISS"
+			            )
+			                &&
+			            UPPER(TRIM('RELATORIO_NILVANA'[STATUS])) <> "DEMITIDO NO MESMO MÊS"
+			        )
+			    )
+			
+			VAR DemissoesAcumuladas =
+			    CALCULATE(
+			        DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			        REMOVEFILTERS(
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA],
+			            'RELATORIO_NILVANA'[FIM COMPENTENCIA],
+			            'RELATORIO_NILVANA'[STATUS]
+			        ),
+			
+			        FILTER(
+			            'RELATORIO_NILVANA',
+			
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA] > PrimeiroPeriodo
+			                &&
+			            'RELATORIO_NILVANA'[INICIO COMPETENCIA] <= PeriodoAtual
+			                &&
+			            CONTAINSSTRING(
+			                UPPER(TRIM('RELATORIO_NILVANA'[STATUS])),
+			                "DEMISS"
+			            )
+			                &&
+			            UPPER(TRIM('RELATORIO_NILVANA'[STATUS])) <> "DEMITIDO NO MESMO MÊS"
+			        )
+			    )
+			
+			RETURN
+			    AtivosInicial
+			        + AdmissoesAcumuladas
+			        - DemissoesAcumuladas
+		formatString: 0
+		lineageTag: 043c4897-620f-453b-9de4-642c4dedb53e
+
+	measure '4Admissões Mês Anterior Nilvana' =
+			
+			VAR MesesVisiveis =
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            'public.dCalendario',
+			            "MesReferencia",
+			                DATE(
+			                    YEAR('public.dCalendario'[Date]),
+			                    MONTH('public.dCalendario'[Date]),
+			                    1
+			                )
+			        )
+			    )
+			
+			RETURN
+			SUMX(
+			    MesesVisiveis,
+			
+			    VAR DataAtual =
+			        [MesReferencia]
+			
+			    VAR InicioMesAnterior =
+			        EOMONTH(DataAtual, -2) + 1
+			
+			    VAR FimMesAnterior =
+			        EOMONTH(DataAtual, -1)
+			
+			    RETURN
+			        CALCULATE(
+			            DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			            REMOVEFILTERS('public.dCalendario'),
+			
+			            FILTER(
+			                'RELATORIO_NILVANA',
+			
+			                'RELATORIO_NILVANA'[INICIO COMPETENCIA] >= InicioMesAnterior
+			                    &&
+			                'RELATORIO_NILVANA'[INICIO COMPETENCIA] <= FimMesAnterior
+			                    &&
+			                CONTAINSSTRING(
+			                    UPPER(TRIM('RELATORIO_NILVANA'[STATUS])),
+			                    "ADMISS"
+			                )
+			            )
+			        )
+			)
+		formatString: 0
+		lineageTag: 97043222-e579-4cbd-a064-feb2dbfb91b0
+
+	column 'COD EMPRESA'
+		dataType: int64
+		formatString: 0
+		lineageTag: 08c63694-f750-41c9-9fd8-efd0449e70b1
+		summarizeBy: sum
+		sourceColumn: COD EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMPRESA
+		dataType: string
+		lineageTag: a4aaa522-bdc3-478a-85f1-38f9e4040d4f
+		summarizeBy: none
+		sourceColumn: EMPRESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD COL'
+		dataType: int64
+		formatString: 0
+		lineageTag: b9ecc8d4-b818-494b-b880-bc3a79571a32
+		summarizeBy: sum
+		sourceColumn: COD COL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CRACHA
+		dataType: int64
+		formatString: 0
+		lineageTag: 78043741-655e-477c-9a78-270b0ca112d4
+		summarizeBy: none
+		sourceColumn: CRACHA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOME '
+		dataType: string
+		lineageTag: f225e966-c960-40af-8429-2bb4b574f5cb
+		summarizeBy: none
+		sourceColumn: "NOME "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INICIO COMPETENCIA'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e32b7cb1-beef-4a6e-8935-58351e39854c
+		summarizeBy: none
+		sourceColumn: INICIO COMPETENCIA
+
+		variation Variation
+			isDefault
+			relationship: 2e79a18f-658b-492c-975e-2779545676e3
+			defaultHierarchy: LocalDateTable_1b0b4ecd-e2ad-4473-bb2a-dbb3d8513b3f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'FIM COMPENTENCIA'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 86cb5dd6-15da-4b12-aed8-fa674c4c9953
+		summarizeBy: none
+		sourceColumn: FIM COMPENTENCIA
+
+		variation Variation
+			isDefault
+			relationship: 9d27d880-9b11-433b-966e-7111d609717f
+			defaultHierarchy: LocalDateTable_df01d4c3-c95f-403a-85c4-78d25fc18cf4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'COD CONTRATO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b0e5301-5af2-41c0-a8db-efb2618d35a2
+		summarizeBy: sum
+		sourceColumn: COD CONTRATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATA DE ADIMISSÃO '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 65955f4c-ee04-49be-99f1-66e4ac43f99b
+		summarizeBy: none
+		sourceColumn: "DATA DE ADIMISSÃO "
+
+		variation Variation
+			isDefault
+			relationship: acb3e880-d1b3-4254-bc68-138b46c30108
+			defaultHierarchy: LocalDateTable_95b56848-6a7d-45ee-9e18-58d4fdbbfdce.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SITUAÇÃO
+		dataType: string
+		lineageTag: cdeb2e29-de24-4754-9c17-462f9605ac0b
+		summarizeBy: none
+		sourceColumn: SITUAÇÃO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATA DEMISSÃO'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0505dfea-c4ab-42fe-8543-a320d4184b16
+		summarizeBy: none
+		sourceColumn: DATA DEMISSÃO
+
+		variation Variation
+			isDefault
+			relationship: c2c2494f-abd2-4ffc-a777-67001dbb5ab6
+			defaultHierarchy: LocalDateTable_aee76725-e47c-43b8-ad67-347f57ca0da4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'COD DO CARGO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b905370-368d-4da7-83e5-64acccfc3e8f
+		summarizeBy: sum
+		sourceColumn: COD DO CARGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARGO
+		dataType: string
+		lineageTag: 436560c5-de01-40c0-8b9c-37c1fe76553a
+		summarizeBy: none
+		sourceColumn: CARGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORIA
+		dataType: string
+		lineageTag: 2731e3ca-6422-4c58-9b1b-7e593c6855e5
+		summarizeBy: none
+		sourceColumn: CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD CENTRO DE CUSTO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f947cd0-1357-4cb1-b1c8-b004331e3f8c
+		summarizeBy: sum
+		sourceColumn: COD CENTRO DE CUSTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DESCRIÇÃO CENTRO DE CISTO'
+		dataType: string
+		lineageTag: 586b6ed4-aba6-472f-bfa5-c98fe7699a13
+		summarizeBy: none
+		sourceColumn: DESCRIÇÃO CENTRO DE CISTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COD LOCAL'
+		dataType: int64
+		formatString: 0
+		lineageTag: d9cb89b9-af42-4417-a729-a95efdbfcfbe
+		summarizeBy: sum
+		sourceColumn: COD LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DESCRIÇÃO LOCAL '
+		dataType: string
+		lineageTag: ed649acc-3dfa-4261-aaae-90f45022ec89
+		summarizeBy: none
+		sourceColumn: "DESCRIÇÃO LOCAL "
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: b4825f42-e8ac-4402-ac86-8b27d5cef14e
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		lineageTag: a716f5b6-6033-4c3e-8399-d21223ddaea4
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition RELATORIO_NILVANA = m
+		mode: import
+		source =
+				let
+				
+				    Fonte = Csv.Document(
+				        Web.Contents(
+				            "https://docs.google.com/spreadsheets/d/e/2PACX-1vTppzv11fNkbjEP_lAhRQ0XS4C3LgEJZRPoAG_gCF4pamHqDVLow29_DW0ZiwwzT5Mdz89N0L-u-hdU/pub?output=csv"
+				        ),
+				        [
+				            Delimiter = ",",
+				            Columns = 19,
+				            Encoding = 65001,
+				            QuoteStyle = QuoteStyle.None
+				        ]
+				    ),
+				
+				    #"Cabeçalhos Promovidos" =
+				        Table.PromoteHeaders(
+				            Fonte,
+				            [PromoteAllScalars = true]
+				        ),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Cabeçalhos Promovidos",
+				            {
+				                {"COD EMPRESA", Int64.Type},
+				                {"EMPRESA", type text},
+				                {"COD COL", Int64.Type},
+				                {"CRACHA", Int64.Type},
+				                {"NOME ", type text},
+				                {"INICIO COMPETENCIA", type date},
+				                {"FIM COMPENTENCIA", type date},
+				                {"COD CONTRATO", Int64.Type},
+				                {"DATA DE ADIMISSÃO ", type date},
+				                {"SITUAÇÃO", type text},
+				                {"DATA DEMISSÃO", type text},
+				                {"COD DO CARGO", Int64.Type},
+				                {"CARGO", type text},
+				                {"CATEGORIA", type text},
+				                {"COD CENTRO DE CUSTO", Int64.Type},
+				                {"DESCRIÇÃO CENTRO DE CISTO", type text},
+				                {"COD LOCAL", Int64.Type},
+				                {"DESCRIÇÃO LOCAL ", type text}
+				            }
+				        ),
+				
+				    #"SK Colaborador Adicionado" =
+				        Table.AddColumn(
+				            #"Tipo Alterado",
+				            "sk_colaborador",
+				            each
+				                Text.From([COD EMPRESA]) & "-" &
+				                Text.From([COD COL]) & "-" &
+				                Text.From([CRACHA]),
+				            type text
+				        ),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"SK Colaborador Adicionado",{{"DATA DEMISSÃO", type date}}),
+				    #"Erros Substituídos" = Table.ReplaceErrorValues(#"Tipo Alterado1", {{"DATA DEMISSÃO", null}})
+				
+				in
+				
+				    #"Erros Substituídos"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

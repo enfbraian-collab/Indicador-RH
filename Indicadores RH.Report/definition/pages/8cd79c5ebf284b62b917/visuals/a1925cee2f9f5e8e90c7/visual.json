@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "a1925cee2f9f5e8e90c7",
+  "position": {
+    "x": 256.66378565254968,
+    "y": 155.9896283491789,
+    "z": 7000,
+    "height": 295.38461538461536,
+    "width": 1010.0605012964563,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "lineStackedColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public.dCalendario"
+                    }
+                  },
+                  "Property": "Competencia"
+                }
+              },
+              "queryRef": "public.dCalendario.Competencia",
+              "nativeQueryRef": "Competencia",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "3Ativos Competência"
+                }
+              },
+              "queryRef": "public dim_colaborador.3Ativos Competência",
+              "nativeQueryRef": "3Ativos Competência"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "3Turnover Mensal %"
+                }
+              },
+              "queryRef": "public dim_colaborador.3Turnover Mensal %",
+              "nativeQueryRef": "3Turnover Mensal %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "secEnd": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.02D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

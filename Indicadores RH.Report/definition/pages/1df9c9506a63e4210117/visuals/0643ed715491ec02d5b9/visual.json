@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "0643ed715491ec02d5b9",
+  "position": {
+    "x": 14.735285300289798,
+    "y": 0,
+    "z": 2000,
+    "height": 135.89207554711703,
+    "width": 204.65674028180274,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas_turnover (3)"
+                    }
+                  },
+                  "Property": "Headcount(periodo)"
+                }
+              },
+              "queryRef": "_Medidas_turnover (3).Headcount (Periodo)",
+              "nativeQueryRef": "Headcount(periodo)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas_turnover (3)"
+                  }
+                },
+                "Property": "Headcount(periodo)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Medidas_turnover (3).Headcount (Periodo)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

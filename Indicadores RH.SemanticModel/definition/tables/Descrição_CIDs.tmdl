@@ -1,0 +1,58 @@
+table Descrição_CIDs
+	lineageTag: f67d45f8-9292-46b6-9b77-5ad621e48b94
+
+	column CID
+		dataType: string
+		lineageTag: 204cf388-7707-4551-aad9-88c485cb8155
+		summarizeBy: none
+		sourceColumn: CID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CID Formatado'
+		dataType: string
+		lineageTag: f5280eed-9065-46d3-8896-5ddfccd36e68
+		summarizeBy: none
+		sourceColumn: CID Formatado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descrição CID'
+		dataType: string
+		lineageTag: eb23a471-d745-4641-8d3a-b23a6bde71b2
+		summarizeBy: none
+		sourceColumn: Descrição CID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Frequência na Base'
+		dataType: int64
+		formatString: 0
+		lineageTag: 79b17a4d-d102-4e41-878f-11a98ac78904
+		summarizeBy: none
+		sourceColumn: Frequência na Base
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: f261b862-4884-4fa5-8155-eeeba22ff418
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Descrição_CIDs = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vSYX8Gbyecu0WVSyyjd8KXbCRXS1ODKAigStKREB21Id6-nXAyF1USrxRdBQh9XGlGiWfLbVJStROJ9/pub?gid=1126294744&single=true&output=csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CID", type text}, {"CID Formatado", type text}, {"Descrição CID", type text}, {"Frequência na Base", Int64.Type}, {"Status", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

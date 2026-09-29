@@ -1,0 +1,33 @@
+table 'public dim_local'
+	lineageTag: 51f86f51-c001-4813-843d-8e65950049c3
+
+	column id_local
+		dataType: int64
+		formatString: 0
+		lineageTag: e3191831-02ef-468c-bc1f-8f50f2679355
+		summarizeBy: sum
+		sourceColumn: id_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_local
+		dataType: string
+		lineageTag: f2f37293-5e12-4123-9c8a-6d821cb6bac0
+		summarizeBy: none
+		sourceColumn: descricao_local
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_local' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_dim_local = Fonte{[Schema="public",Item="dim_local"]}[Data]
+				in
+				    public_dim_local
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

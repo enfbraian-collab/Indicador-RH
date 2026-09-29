@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "33afe186209d195192ea",
+  "position": {
+    "x": 546.398537477148,
+    "y": 0,
+    "z": 5000,
+    "height": 150,
+    "width": 218.88888888888889,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas_turnover (3)"
+                    }
+                  },
+                  "Property": "Turnover Mensal %"
+                }
+              },
+              "queryRef": "_Medidas_turnover (3).Turnover Mensal %",
+              "nativeQueryRef": "Turnover Mensal %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas_turnover (3)"
+                  }
+                },
+                "Property": "Turnover Mensal %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

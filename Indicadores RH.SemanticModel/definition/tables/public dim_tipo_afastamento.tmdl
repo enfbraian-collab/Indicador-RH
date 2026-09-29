@@ -1,0 +1,33 @@
+table 'public dim_tipo_afastamento'
+	lineageTag: 702c32ad-4a04-4040-90cf-f4f19f0c4663
+
+	column id_afastamento
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d54a580-862a-4f42-ac59-f52ae017c99c
+		summarizeBy: sum
+		sourceColumn: id_afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_afastamento
+		dataType: string
+		lineageTag: 5b621d6e-96f1-4d1a-80a9-7b5d33c6b795
+		summarizeBy: none
+		sourceColumn: descricao_afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_tipo_afastamento' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_dim_tipo_afastamento = Fonte{[Schema="public",Item="dim_tipo_afastamento"]}[Data]
+				in
+				    public_dim_tipo_afastamento
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

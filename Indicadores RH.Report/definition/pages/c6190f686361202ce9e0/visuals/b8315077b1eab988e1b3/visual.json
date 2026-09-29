@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "b8315077b1eab988e1b3",
+  "position": {
+    "x": 212.93680297397771,
+    "y": 135.61338289962825,
+    "z": 0,
+    "height": 418.73605947955394,
+    "width": 679.25650557620827,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas_turnover (3)"
+                    }
+                  },
+                  "Property": "% Turnover por Cargo (Historico)"
+                }
+              },
+              "queryRef": "_Medidas_turnover (3).% Turnover por Cargo (Historico)",
+              "nativeQueryRef": "% Turnover por Cargo (Historico)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "descricao_cargo"
+                }
+              },
+              "queryRef": "public dim_colaborador.descricao_cargo",
+              "nativeQueryRef": "descricao_cargo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "nome_funcionario"
+                }
+              },
+              "queryRef": "public dim_colaborador.nome_funcionario",
+              "nativeQueryRef": "nome_funcionario"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public dim_colaborador"
+                  }
+                },
+                "Property": "descricao_cargo"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

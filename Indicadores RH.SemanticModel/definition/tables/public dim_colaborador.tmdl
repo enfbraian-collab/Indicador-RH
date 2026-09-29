@@ -1,0 +1,752 @@
+table 'public dim_colaborador'
+	lineageTag: 8c888e04-c674-4cc9-bc06-c1bdbf54a555
+
+	measure 1Admissões =
+			
+			VAR DataInicial =
+			    MIN('public.dCalendario'[Date])
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'public dim_colaborador',
+			        'public dim_colaborador'[data_admissao] >= DataInicial
+			            &&
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			    'public dim_colaborador'[id_tipo_colaborador] = 1,
+			    'public dim_colaborador'[id_tipo_contrato] = 1,
+			
+			    'public dim_situacao'[descricao_situacao] <> "Desligado"
+			)
+		formatString: 0
+		lineageTag: a300317d-f113-45c2-8bfc-94a81a2d4a41
+
+	measure '1Ativos Início do Mês' = ```
+			
+			VAR PrimeiroDiaMes =
+			    MIN('public.dCalendario'[date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			    FILTER(
+			        ALL('public dim_colaborador'),
+			        
+			        'public dim_colaborador'[data_admissao] < PrimeiroDiaMes
+			        
+			        &&
+			        
+			        (
+			            ISBLANK('public dim_colaborador'[data_demissao])
+			            ||
+			            'public dim_colaborador'[data_demissao] >= PrimeiroDiaMes
+			        )
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 02741159-177d-44f1-93e4-7c4edcf726ee
+
+	measure 3Demissoes =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    USERELATIONSHIP(
+			        'public.dCalendario'[Date],
+			        'public dim_colaborador'[demissao_real]
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			
+			    'public dim_colaborador'[id_tipo_colaborador] = 1
+			)
+		formatString: 0
+		lineageTag: c9b4148c-2c39-4e49-b89e-bcbf4555dad1
+
+	measure '3Ativos Competência' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    FILTER(
+			        'public dim_colaborador',
+			
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			
+			        &&
+			
+			        (
+			            ISBLANK('public dim_colaborador'[demissao_real])
+			            ||
+			            'public dim_colaborador'[demissao_real] > DataFinal
+			        )
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			
+			    'public dim_colaborador'[id_tipo_colaborador] = 1
+			)
+		formatString: 0
+		lineageTag: f70878cc-14f3-481f-95d9-8b80e7190d4f
+
+	measure '1Ativos Competência' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'public dim_colaborador',
+			
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			            &&
+			        (
+			            ISBLANK('public dim_colaborador'[demissao_real])
+			                ||
+			            'public dim_colaborador'[demissao_real] > DataFinal
+			        )
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			    'public dim_colaborador'[id_tipo_colaborador] = 1,
+			    'public dim_colaborador'[id_tipo_contrato] = 1
+			)
+		formatString: 0
+		lineageTag: 1223640d-c957-4ec1-b7ed-92fef40bb62d
+
+	measure 'Ativos Competência Teste' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'public dim_colaborador',
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			            &&
+			        (
+			            ISBLANK('public dim_colaborador'[demissao_real])
+			                ||
+			            'public dim_colaborador'[demissao_real] > DataFinal
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: a57c38fe-8f6a-4e54-b733-ff6e696241b1
+
+	measure '1Ativos Competência Teste' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'public dim_colaborador',
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			            &&
+			        (
+			            ISBLANK('public dim_colaborador'[demissao_real])
+			                ||
+			            'public dim_colaborador'[demissao_real] > DataFinal
+			        )
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			    'public dim_colaborador'[id_tipo_colaborador] = 1,
+			    'public dim_colaborador'[id_tipo_contrato] = 1,
+			
+			    'public dim_situacao'[descricao_situacao] <> "Desligado"
+			)
+		formatString: 0
+		lineageTag: 6b2e5b08-08f4-4862-a53f-404a73f2dd1c
+
+	measure 3Admissões = ```
+			
+			VAR DataInicial = 
+			    MIN('public.dCalendario'[Date]) 
+			 
+			VAR DataFinal = 
+			    MAX('public.dCalendario'[Date]) 
+			 
+			RETURN 
+			CALCULATE( 
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]), 
+			 
+			    REMOVEFILTERS('public.dCalendario'), 
+			 
+			    FILTER( 
+			        'public dim_colaborador',
+			
+			        'public dim_colaborador'[data_admissao] >= DataInicial 
+			            &&
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			
+			            &&
+			
+			        NOT(
+			            'public dim_colaborador'[demissao_real] >= DataInicial
+			                &&
+			            'public dim_colaborador'[demissao_real] <= DataFinal
+			        )
+			    ), 
+			 
+			    'public dim_colaborador'[id_cod_empresa] = 1, 
+			    'public dim_colaborador'[id_tipo_colaborador] = 1, 
+			    'public dim_colaborador'[id_tipo_contrato] = 1
+			)
+			```
+		formatString: 0
+		lineageTag: 0a8f71af-5d44-48b4-90ce-6767e95c50ed
+
+	measure '3Turnover Mensal %' =
+			
+			DIVIDE(
+			    [3Demissoes],
+			    [4Ativos Competência],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 51db77dc-06f3-4321-865c-de805214d658
+
+	measure '3Turnover Acumulado Ano %' =
+			
+			VAR MesesDoAno =
+			    CALCULATETABLE(
+			        VALUES('public.dCalendario'[AnoMes]),
+			        DATESYTD('public.dCalendario'[Date])
+			    )
+			
+			VAR TotalDemissoesYTD =
+			    SUMX(
+			        MesesDoAno,
+			        CALCULATE([3Demissoes])
+			    )
+			
+			RETURN
+			DIVIDE(
+			    TotalDemissoesYTD,
+			    [3Ativos Competência],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 67d4aad9-a0b0-402c-96c0-ec37a5eded06
+
+	measure '4Ativos Competência' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('RELATORIO_NILVANA'[sk_colaborador]),
+			
+			    REMOVEFILTERS(
+			        'RELATORIO_NILVANA'[INICIO COMPETENCIA],
+			        'RELATORIO_NILVANA'[FIM COMPENTENCIA]
+			    ),
+			
+			    FILTER(
+			        'RELATORIO_NILVANA',
+			
+			        'RELATORIO_NILVANA'[DATA DE ADIMISSÃO ] <= DataFinal
+			
+			            &&
+			
+			        (
+			            ISBLANK('RELATORIO_NILVANA'[DATA DEMISSÃO])
+			                ||
+			            'RELATORIO_NILVANA'[DATA DEMISSÃO] > DataFinal
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: 45d23934-59f9-44b2-910c-7e948770ea42
+
+	measure '4Turnover Mensal % Nilvana' =
+			
+			VAR Admissoes =
+			    [4Admissões Nilvana]
+			
+			VAR Demissoes =
+			    [4Demissoes Nilvana]
+			
+			VAR Headcount =
+			    [4Saldo Final Colaboradores Nilvana]
+			
+			VAR MovimentacaoMedia =
+			    DIVIDE(
+			        Admissoes + Demissoes,
+			        2
+			    )
+			
+			RETURN
+			    DIVIDE(
+			        MovimentacaoMedia,
+			        Headcount,
+			        0
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 683b0dd2-107f-4de0-98be-8edfc7aea7b0
+
+	measure '4Média Turnover Mensal Nilvana' =
+			
+			AVERAGEX(
+			    VALUES('public.dCalendario'[AnoMes]),
+			    [4Turnover Mensal % Nilvana]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a6a90f95-41e8-4b9b-ad93-b6052b2ccd86
+
+	column cracha
+		dataType: int64
+		formatString: 0
+		lineageTag: 14b175ba-3bf9-4449-9466-6f332749194e
+		summarizeBy: sum
+		sourceColumn: cracha
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d528a77-d2dc-4d97-be81-358ff2a1a299
+		summarizeBy: sum
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column sexo
+		dataType: string
+		lineageTag: a384d34c-0894-4e7f-a1d1-dbca22df05a0
+		summarizeBy: none
+		sourceColumn: sexo
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_nascimento
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fcfb6c6d-21e5-47b5-8587-e70250bbf541
+		summarizeBy: none
+		sourceColumn: data_nascimento
+
+		variation Variation
+			isDefault
+			relationship: 4681a61b-055d-4e21-85b0-8874e2e40cf7
+			defaultHierarchy: LocalDateTable_02fdf47a-0807-482c-8795-6092f3d22b44.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_admissao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 246896ce-81e0-4123-9fbd-948425b6d286
+		summarizeBy: none
+		sourceColumn: data_admissao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_demissao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f03b2e62-f077-45a0-b5f4-420af30fc057
+		summarizeBy: none
+		sourceColumn: data_demissao
+
+		variation Variation
+			isDefault
+			relationship: 93277d2e-232b-434a-ba9b-9d857b023bfd
+			defaultHierarchy: LocalDateTable_6d4b0701-bc1b-4113-98e4-6426f5f4dc50.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column nome_funcionario
+		dataType: string
+		lineageTag: d47f7203-619b-47a4-b0eb-a6f186246545
+		summarizeBy: none
+		sourceColumn: nome_funcionario
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_contrato
+		dataType: int64
+		lineageTag: d78a301a-907a-40bd-a0fd-2dd88600f482
+		summarizeBy: none
+		sourceColumn: id_tipo_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_estado_cv
+		dataType: int64
+		lineageTag: 0553312e-a5ae-4b50-a35c-4bd40b40251f
+		summarizeBy: none
+		sourceColumn: id_estado_cv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_raca
+		dataType: int64
+		lineageTag: dd60a45c-88eb-4d24-a21d-cc5e4a5427b5
+		summarizeBy: none
+		sourceColumn: id_raca
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_tipo_colaborador
+		dataType: int64
+		formatString: 0
+		lineageTag: 8184d94e-ba82-4312-800b-f1f9d6f07ef0
+		summarizeBy: none
+		sourceColumn: id_tipo_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cod_filial
+		dataType: int64
+		formatString: 0
+		lineageTag: aeb9113f-deb3-4083-948c-f9f176a07cda
+		summarizeBy: none
+		sourceColumn: id_cod_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cod_empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: fd1e41e1-c9c3-4eac-8e1e-2343e1379c9e
+		summarizeBy: none
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_situacao
+		dataType: int64
+		formatString: 0
+		lineageTag: d1eeb2a7-37b1-4e4b-9bda-096e21ed641f
+		summarizeBy: none
+		sourceColumn: id_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: c513faa4-b624-4681-b47c-f3a409a14267
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_centro_custo
+		dataType: int64
+		formatString: 0
+		lineageTag: eabab78d-0134-41cb-bf1d-5c9b599d3e5a
+		summarizeBy: sum
+		sourceColumn: id_centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cargo
+		dataType: int64
+		formatString: 0
+		lineageTag: 00adc658-3a6e-42d7-afaa-b495642c0dba
+		summarizeBy: sum
+		sourceColumn: id_cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_cargo
+		dataType: string
+		lineageTag: ba63c609-13e7-4448-b49c-d0c8f1b9e6af
+		summarizeBy: none
+		sourceColumn: descricao_cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_centro_custo
+		dataType: string
+		lineageTag: 5384ff93-975b-423c-bd00-54a8ca921b9f
+		summarizeBy: none
+		sourceColumn: descricao_centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_local
+		dataType: int64
+		formatString: 0
+		lineageTag: 559cbb5f-87f4-4c4c-8718-ca4f3a29b3ea
+		summarizeBy: sum
+		sourceColumn: id_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_local
+		dataType: string
+		lineageTag: ad53f78c-4a69-4abb-a6dc-966643243cbd
+		summarizeBy: none
+		sourceColumn: descricao_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column demissao_real =
+			
+			IF(
+			    NOT ISBLANK('public dim_colaborador'[data_demissao]) && 'public dim_colaborador'[data_demissao] <= TODAY(),
+			    'public dim_colaborador'[data_demissao],
+			    BLANK()
+			)
+		formatString: Short Date
+		lineageTag: 4ce7525c-93f8-48b0-a9e5-d098dd35bae9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_admissao_real
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6178fa3b-56f1-4e7f-92d7-93c0ca24fc88
+		summarizeBy: none
+		sourceColumn: Data_admissao_real
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Unidade Agrupada' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    // Hospital da Criança e Maternidade
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "CRIANÇA") || 
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "HCM"), "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    
+			    // Ambulatório
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "AMBULATÓRIO") || 
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "AMBULATORIO"), "AMBULATÓRIO",
+			    
+			    // Hemocentro
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "HEMOCENTRO"), "HEMOCENTRO",
+			    
+			    // Hospital Municipal
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "MUNICIPAL") || 
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "HM "), "HOSPITAL MUNICIPAL",
+			    
+			    // AME Fernandópolis
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "AME"), "AME FERNANDOPOLIS",
+			    
+			    // Lucy Montoro (Avaliando primeiro Fernandópolis para não confundir com Rio Preto)
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "LUCY") && 
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "FERNANDOPOLIS"), "LUCY MONTORO FERNANDOPOLIS",
+			    
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "LUCY"), "LUCY MONTORO RIO PRETO",
+			    
+			    // Hospital de Base
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "BASE") || 
+			    CONTAINSSTRING('public dim_colaborador'[descricao_local], "HB "), "HOSPITAL DE BASE",
+			    
+			    // Categoria Padrão para identificar locais que fugiram à regra
+			    "OUTROS"
+			)
+			```
+		lineageTag: f03aa571-6868-4d15-81a7-7cdcfdcb3bea
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2Ativos Competência' =
+			
+			VAR DataFinal =
+			    MAX('public.dCalendario'[Date])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    REMOVEFILTERS('public.dCalendario'),
+			
+			    FILTER(
+			        'public dim_colaborador',
+			
+			        'public dim_colaborador'[data_admissao] <= DataFinal
+			            &&
+			        (
+			            ISBLANK('public dim_colaborador'[demissao_real])
+			                ||
+			            'public dim_colaborador'[demissao_real] > DataFinal
+			        )
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			    'public dim_colaborador'[id_tipo_colaborador] = 1,
+			    'public dim_colaborador'[id_tipo_contrato] = 1
+			)
+		formatString: 0
+		lineageTag: 21760776-3383-4b28-90b8-fd8e4dd6b175
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 4Demissoes =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('public dim_colaborador'[sk_colaborador]),
+			
+			    USERELATIONSHIP(
+			        'public.dCalendario'[Date],
+			        'public dim_colaborador'[demissao_real]
+			    ),
+			
+			    'public dim_colaborador'[id_cod_empresa] = 1,
+			    'public dim_colaborador'[id_tipo_colaborador] = 1
+			)
+		formatString: 0
+		lineageTag: 817cda19-b3e8-44e5-90b0-62bd94477cdf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'data_admissao Hierarquia'
+		lineageTag: 9d33ece4-5c48-4836-a25e-c957ab67606e
+
+		level data_admissao
+			lineageTag: 40d029fc-3af8-44a0-aef7-018cc07a86cd
+			column: data_admissao
+
+	partition 'public dim_colaborador' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_colaborador = Fonte{[Schema="public", Item="dim_colaborador"]}[Data],
+				
+				    // ============================================================
+				    // 1. Remove duplicidades por crachá
+				    // ============================================================
+				    #"Duplicatas Removidas" =
+				        Table.Distinct(
+				            public_dim_colaborador,
+				            {"cracha"}
+				        ),
+				
+				    // ============================================================
+				    // 2. Lista dos tipos que queremos aplicar
+				    // ============================================================
+				    TiposDesejados = {
+				        {"cracha", Int64.Type},
+				        {"cpf", Int64.Type},
+				        {"data_nascimento", type date},
+				        {"data_admissao", type date},
+				        {"data_demissao", type date},
+				        {"id_tipo_contrato", Int64.Type},
+				        {"id_estado_cv", Int64.Type},
+				        {"id_raca", Int64.Type},
+				        {"id_tipo_colaborador", Int64.Type},
+				        {"id_cod_filial", Int64.Type},
+				        {"id_cod_empresa", Int64.Type},
+				        {"id_situacao", Int64.Type},
+				        {"id_cargo", Int64.Type},
+				        {"data_inicio_cargo", type date},
+				        {"data_fim_cargo", type date},
+				        {"id_centro_custo", Int64.Type},
+				        {"data_inicio_cc", type date},
+				        {"data_fim_cc", type date},
+				        {"id_local", Int64.Type},
+				        {"data_inicio_local", type date},
+				        {"data_fim_local", type date}
+				    },
+				
+				    // ============================================================
+				    // 3. Mantém apenas colunas que realmente existem na fonte
+				    // ============================================================
+				    TiposExistentes =
+				        List.Select(
+				            TiposDesejados,
+				            each List.Contains(
+				                Table.ColumnNames(#"Duplicatas Removidas"),
+				                _{0}
+				            )
+				        ),
+				
+				    // ============================================================
+				    // 4. Altera os tipos somente das colunas existentes
+				    // ============================================================
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Duplicatas Removidas",
+				            TiposExistentes
+				        ),
+				
+				    // ============================================================
+				    // 5. Cria Data_admissao_real de forma segura
+				    // ============================================================
+				    #"Personalização Adicionada" =
+				        Table.AddColumn(
+				            #"Tipo Alterado",
+				            "Data_admissao_real",
+				            each
+				                try
+				                    if [data_admissao] <> null
+				                        and [data_admissao] <= Date.From(DateTime.LocalNow())
+				                    then [data_admissao]
+				                    else null
+				                otherwise null,
+				            type date
+				        ),
+				
+				    // ============================================================
+				    // 6. Garantia final contra duplicidade de crachá
+				    // ============================================================
+				    #"Duplicatas Removidas1" =
+				        Table.Distinct(
+				            #"Personalização Adicionada",
+				            {"cracha"}
+				        )
+				
+				in
+				    #"Duplicatas Removidas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

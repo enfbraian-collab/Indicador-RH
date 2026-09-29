@@ -1,0 +1,75 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	maxParallelismPerRefresh: 1
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Erros nas consultas que foram carregadas em 09/08/2026 13:05:17.
+queryGroup 'Erros na Consulta - 09/08/2026 13:05:17'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["public fato_apuracao","public dim_cargo","public dim_centro_custo","public dim_colaborador","public dim_empresa","public dim_escala","public dim_estado_civil","public dim_filial","public dim_raca","public dim_situacao","public dim_situacao_apuracao","public dim_tipo_colaborador","public dim_tipo_contrato","_medidas_turnover","_Medidas_turnover (2)","public fato_historico_cargo","public fato_historico_ccusto","public fato_historico_local","Erros em public fato_apuracao","RELATORIO_NILVANA","Atestados","Descrição_CIDs","public dim_local","public dim_tipo_afastamento","public fato_afastamento","public fato_historico_situacao","public dim_apuracao_situacao","ControleCarga"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'public fato_apuracao'
+ref table DateTableTemplate_d4a8eed5-047c-4577-b0d3-1324a60831db
+ref table 'public dim_cargo'
+ref table 'public dim_centro_custo'
+ref table 'public dim_colaborador'
+ref table LocalDateTable_02fdf47a-0807-482c-8795-6092f3d22b44
+ref table LocalDateTable_6d4b0701-bc1b-4113-98e4-6426f5f4dc50
+ref table 'public dim_empresa'
+ref table 'public dim_escala'
+ref table 'public dim_estado_civil'
+ref table 'public dim_filial'
+ref table 'public dim_raca'
+ref table 'public dim_situacao'
+ref table 'public dim_situacao_apuracao'
+ref table 'public dim_tipo_colaborador'
+ref table 'public dim_tipo_contrato'
+ref table 'public.dCalendario'
+ref table 'public fato_historico_cargo'
+ref table LocalDateTable_89f50c3d-caed-40b2-a764-93615cb6515b
+ref table LocalDateTable_43b3318a-dd9a-468f-84c8-1189c7806c05
+ref table 'public fato_historico_ccusto'
+ref table LocalDateTable_760452df-3be0-4b46-84b8-e400e4af3f76
+ref table LocalDateTable_f9ff3bf2-0d6c-4ffd-b036-99c223648efa
+ref table 'public fato_historico_local'
+ref table LocalDateTable_6a07f93e-32e6-4e61-8b52-84e5d2a62a96
+ref table LocalDateTable_1d6aefb6-765c-4401-8790-5e4c1c1e73f9
+ref table 'CC Ainda Outros'
+ref table RELATORIO_NILVANA
+ref table LocalDateTable_1b0b4ecd-e2ad-4473-bb2a-dbb3d8513b3f
+ref table LocalDateTable_df01d4c3-c95f-403a-85c4-78d25fc18cf4
+ref table LocalDateTable_95b56848-6a7d-45ee-9e18-58d4fdbbfdce
+ref table LocalDateTable_aee76725-e47c-43b8-ad67-347f57ca0da4
+ref table Atestados
+ref table LocalDateTable_59a10d65-e2b1-4b85-9cab-03c6669d4371
+ref table LocalDateTable_7b33034a-a8c9-4112-b747-1f179a21e4c8
+ref table LocalDateTable_c435cf5d-cac2-428d-ac05-9da09236211e
+ref table LocalDateTable_37f75e6d-b7d8-4a98-a73b-771667d0ed3e
+ref table Descrição_CIDs
+ref table 'public dim_local'
+ref table 'public dim_tipo_afastamento'
+ref table 'public fato_afastamento'
+ref table LocalDateTable_ed1b8ae7-2467-4d9b-b243-b3b87a38bdc9
+ref table LocalDateTable_c77db5ca-35ec-40e2-acf9-86036c6174e8
+ref table LocalDateTable_6c3e71f3-6445-4f9f-9226-41b2117d2e16
+ref table 'public fato_historico_situacao'
+ref table LocalDateTable_b9286272-6a06-4130-9236-6f6cd1ea6959
+ref table LocalDateTable_cc916da4-8062-44b2-93a0-0a0cf8ad8594
+ref table ControleCarga
+ref table LocalDateTable_fdcaad0e-b294-430b-aad8-9bbf53abddee
+ref table LocalDateTable_54db9150-4a2c-484a-a2d3-bb6276362f20
+ref table LocalDateTable_bfd5589d-df74-4935-b7e3-971e568c5b0d
+
+ref cultureInfo pt-BR
+

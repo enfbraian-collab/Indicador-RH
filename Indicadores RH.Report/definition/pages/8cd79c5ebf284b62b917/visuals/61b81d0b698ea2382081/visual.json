@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "61b81d0b698ea2382081",
+  "position": {
+    "x": 205.65096952908587,
+    "y": 14.182825484764543,
+    "z": 2000,
+    "height": 128.82733148661126,
+    "width": 203.28716528162511,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "3Ativos Competência"
+                }
+              },
+              "queryRef": "public dim_colaborador.Ativos Competência",
+              "nativeQueryRef": "3Ativos Competência"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public dim_colaborador"
+                  }
+                },
+                "Property": "3Ativos Competência"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "public dim_colaborador.Ativos Competência"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

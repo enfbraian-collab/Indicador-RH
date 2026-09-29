@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "bdcaecf8e1c3679ec297",
+  "position": {
+    "x": 737.11151736745887,
+    "y": 423.5466179159049,
+    "z": 9000,
+    "height": 296.01462522851921,
+    "width": 526.50822669104207,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public dim_colaborador"
+                    }
+                  },
+                  "Property": "descricao_cargo"
+                }
+              },
+              "queryRef": "public dim_colaborador.descricao_cargo",
+              "nativeQueryRef": "descricao_cargo",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas_turnover (3)"
+                    }
+                  },
+                  "Property": "% Turnover por Cargo (Historico)"
+                }
+              },
+              "queryRef": "_Medidas_turnover (3).% Turnover por Cargo (Historico)",
+              "nativeQueryRef": "% Turnover por Cargo (Historico)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas_turnover (3)"
+                  }
+                },
+                "Property": "% Turnover por Cargo (Historico)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

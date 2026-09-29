@@ -1,0 +1,401 @@
+table Atestados
+	lineageTag: be26ecc2-e0f2-49ff-992f-ec2102b1b392
+
+	measure 'Tempo Médio em Dias' =
+			
+			AVERAGE('Atestados'[Tempo Real em Dias])
+		lineageTag: 6a168202-0b8b-4002-8dd1-dc909df3a1ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Protocolo
+		dataType: string
+		lineageTag: 96d2f276-1718-4a4b-882b-32dbd9672789
+		summarizeBy: none
+		sourceColumn: Protocolo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Matricula
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e04f24d-3c65-4f7a-9005-d2174972c9dd
+		summarizeBy: none
+		sourceColumn: Matricula
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: 659b19ff-d800-4b3e-a017-6175984c4b04
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: int64
+		formatString: 0
+		lineageTag: 90375fb5-e388-403a-a755-8a67a926a119
+		summarizeBy: sum
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código Da Empresa'
+		dataType: int64
+		formatString: 0
+		lineageTag: 737e2964-c894-4f76-8b9e-8b080da54a1b
+		summarizeBy: sum
+		sourceColumn: Código Da Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código da Filial'
+		dataType: int64
+		formatString: 0
+		lineageTag: d07e3c4d-ee33-4ea0-ade5-2c7ebbc96163
+		summarizeBy: sum
+		sourceColumn: Código da Filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome da Filial'
+		dataType: string
+		lineageTag: 23f6ad98-202f-4550-babe-89931fe98134
+		summarizeBy: none
+		sourceColumn: Nome da Filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Turno do colaborador'
+		dataType: string
+		lineageTag: df64afa5-26db-49a2-9ff4-975fb2978e16
+		summarizeBy: none
+		sourceColumn: Turno do colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data da admissão'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0c3f7480-c10c-43e8-9b9e-f095177ae543
+		summarizeBy: none
+		sourceColumn: Data da admissão
+
+		variation Variation
+			isDefault
+			relationship: b8bd3b94-8e0a-46d2-8e8e-95544cd69a7a
+			defaultHierarchy: LocalDateTable_59a10d65-e2b1-4b85-9cab-03c6669d4371.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tempo de empresa'
+		dataType: string
+		lineageTag: 2e1dc12f-9ca4-4ca9-8e1d-33f09e2839a8
+		summarizeBy: none
+		sourceColumn: Tempo de empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Centro de Custo'
+		dataType: string
+		lineageTag: 44da58ee-0f5c-4310-991e-8a1afc339cf2
+		summarizeBy: none
+		sourceColumn: Centro de Custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código do Local'
+		dataType: string
+		lineageTag: 3df9ff7f-fbf8-4326-ad0d-af269899c5d9
+		summarizeBy: none
+		sourceColumn: Código do Local
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Local'
+		dataType: string
+		lineageTag: 711aa5bb-49b0-44bb-b01c-57899926ebf6
+		summarizeBy: none
+		sourceColumn: Nome do Local
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código do Posto de Trabalho'
+		dataType: string
+		lineageTag: ce475b5b-f6a6-4b92-97c7-413cce1d3cb9
+		summarizeBy: none
+		sourceColumn: Código do Posto de Trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Posto de Trabalho'
+		dataType: string
+		lineageTag: 46a6f8d2-bf93-41c7-8fc5-dfd86f3af4a7
+		summarizeBy: none
+		sourceColumn: Nome do Posto de Trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código da Escala de Trabalho'
+		dataType: int64
+		formatString: 0
+		lineageTag: 279c9a6f-ae38-4bcf-b780-ce4990a9334c
+		summarizeBy: sum
+		sourceColumn: Código da Escala de Trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descrição da Escala de Trabalho'
+		dataType: string
+		lineageTag: 2ad66270-602f-4e99-abd5-28a2a962f3a8
+		summarizeBy: none
+		sourceColumn: Descrição da Escala de Trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código do Cargo de Trabalho'
+		dataType: int64
+		formatString: 0
+		lineageTag: d3a39bbc-1b7e-451f-a22a-200f212c1e41
+		summarizeBy: sum
+		sourceColumn: Código do Cargo de Trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Cargo de Trabalho'
+		dataType: string
+		lineageTag: 2bc95054-1e6c-471f-a2eb-45fa16984d67
+		summarizeBy: none
+		sourceColumn: Nome do Cargo de Trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data do Documento'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cee7a805-f22e-40a1-b4da-810ef2d88eb7
+		summarizeBy: none
+		sourceColumn: Data do Documento
+
+		variation Variation
+			isDefault
+			relationship: fbaa02e1-52c8-410d-a1a6-9e85d247742f
+			defaultHierarchy: LocalDateTable_7b33034a-a8c9-4112-b747-1f179a21e4c8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data/Hora de Inicio'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: caf9962b-6d6a-4605-ad57-1046d08a970c
+		summarizeBy: none
+		sourceColumn: Data/Hora de Inicio
+
+		variation Variation
+			isDefault
+			relationship: 6834a862-d514-4be3-97f1-92b0c283aa37
+			defaultHierarchy: LocalDateTable_c435cf5d-cac2-428d-ac05-9da09236211e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data/Hora de Fim'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1ffad3b1-36f1-4d84-af08-d7418aedac9f
+		summarizeBy: none
+		sourceColumn: Data/Hora de Fim
+
+		variation Variation
+			isDefault
+			relationship: cb879ed0-ec83-44be-a721-058dcd6a031a
+			defaultHierarchy: LocalDateTable_37f75e6d-b7d8-4a98-a73b-771667d0ed3e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias/Horas
+		dataType: string
+		lineageTag: ec0de732-004f-4a90-9b91-1b21cf2379bb
+		summarizeBy: none
+		sourceColumn: Dias/Horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tempo
+		dataType: string
+		lineageTag: 36243ad3-2e61-4e67-8763-a852fa1c6e7f
+		summarizeBy: none
+		sourceColumn: Tempo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situação
+		dataType: string
+		lineageTag: 851eccf1-fe52-459d-bee8-dedeeed81486
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Integrado
+		dataType: string
+		lineageTag: 35c308b9-9a3f-4d20-8a1c-4ac1085e175d
+		summarizeBy: none
+		sourceColumn: Integrado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo do Documento'
+		dataType: string
+		lineageTag: ff240229-03a5-4741-9053-c542e2b71e8c
+		summarizeBy: none
+		sourceColumn: Tipo do Documento
+
+		annotation SummarizationSetBy = Automatic
+
+	column CIDs
+		dataType: string
+		lineageTag: f7582609-76a0-4468-9eef-0a68532e0071
+		summarizeBy: none
+		sourceColumn: CIDs
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo Profissional'
+		dataType: string
+		lineageTag: a3856a41-4953-4166-961a-b101d120dead
+		summarizeBy: none
+		sourceColumn: Tipo Profissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estado Profissional'
+		dataType: string
+		lineageTag: 45feb11b-cc12-4282-81cc-a96f442fa0ca
+		summarizeBy: none
+		sourceColumn: Estado Profissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número Profissional'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4236646f-c6af-4829-9eb7-6d774e0b56e0
+		summarizeBy: sum
+		sourceColumn: Número Profissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Profissional'
+		dataType: string
+		lineageTag: 08186070-7542-46cc-83e3-d592380ea3e2
+		summarizeBy: none
+		sourceColumn: Nome Profissional
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Canal de envio'
+		dataType: string
+		lineageTag: d759d1ff-8f00-4304-868b-630260e9caf3
+		summarizeBy: none
+		sourceColumn: Canal de envio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tempo Real em Dias' =
+			
+			VAR Inicio =
+			    'Atestados'[Data/Hora de Inicio]
+			
+			VAR Fim =
+			    'Atestados'[Data/Hora de Fim]
+			
+			RETURN
+			IF(
+			    ISBLANK(Inicio) || ISBLANK(Fim),
+			    BLANK(),
+			    DIVIDE(
+			        DATEDIFF(Inicio, Fim, MINUTE),
+			        1440
+			    )
+			)
+		lineageTag: 8d561b59-bc28-4cf6-88fa-541cb8e7a4d5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Mês =
+			
+			FORMAT(
+			    'Atestados'[Data do Documento],
+			    "MMMM"
+			)
+		lineageTag: 436011eb-852a-4f27-942e-efb4a3c1c596
+		summarizeBy: none
+		sortByColumn: 'Número Mês'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano =
+			
+			YEAR(
+			    'Atestados'[Data do Documento]
+			)
+		formatString: 0
+		lineageTag: 79d35756-0745-4bca-a634-2a58c53d37f8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número Mês' =
+			
+			MONTH(
+			    'Atestados'[Data do Documento]
+			)
+		formatString: 0
+		lineageTag: 06327c7c-070e-4a23-9ab9-a25599126d8a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Data/Hora de Fim Hierarquia'
+		lineageTag: 9a4fdbff-adaf-4c21-a9a2-fd121d1f403c
+
+		level 'Data/Hora de Fim'
+			lineageTag: 32f5dbbd-7cbf-4686-9f45-6d2ebef0421e
+			column: 'Data/Hora de Fim'
+
+	hierarchy 'Data/Hora de Fim Hierarquia 2'
+		lineageTag: ab499f73-e9ef-4601-a44a-fb85c0acd820
+
+		level 'Data/Hora de Fim'
+			lineageTag: b91c069e-2983-4cff-b350-2ee74f138f42
+			column: 'Data/Hora de Fim'
+
+		level 'Data/Hora de Inicio'
+			lineageTag: 6332b99b-df7d-4603-b81d-8491e983bbd7
+			column: 'Data/Hora de Inicio'
+
+	partition Atestados = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vSYX8Gbyecu0WVSyyjd8KXbCRXS1ODKAigStKREB21Id6-nXAyF1USrxRdBQh9XGlGiWfLbVJStROJ9/pub?output=csv"),[Delimiter=",", Columns=33, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Protocolo", type text}, {"Matricula", Int64.Type}, {"Nome", type text}, {"CPF", Int64.Type}, {"Código Da Empresa", Int64.Type}, {"Código da Filial", Int64.Type}, {"Nome da Filial", type text}, {"Turno do colaborador", type text}, {"Data da admissão", type date}, {"Tempo de empresa", type text}, {"Centro de Custo", type text}, {"Código do Local", type text}, {"Nome do Local", type text}, {"Código do Posto de Trabalho", type text}, {"Nome do Posto de Trabalho", type text}, {"Código da Escala de Trabalho", Int64.Type}, {"Descrição da Escala de Trabalho", type text}, {"Código do Cargo de Trabalho", Int64.Type}, {"Nome do Cargo de Trabalho", type text}, {"Data do Documento", type date}, {"Data/Hora de Inicio", type datetime}, {"Data/Hora de Fim", type datetime}, {"Dias/Horas", type text}, {"Tempo", type text}, {"Situação", type text}, {"Integrado", type text}, {"Tipo do Documento", type text}, {"CIDs", type text}, {"Tipo Profissional", type text}, {"Estado Profissional", type text}, {"Número Profissional", Int64.Type}, {"Nome Profissional", type text}, {"Canal de envio", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

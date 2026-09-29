@@ -1,0 +1,159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.1.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU07",
+      "reportVersionAtImport": {
+        "visual": "2.11.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "textFilter25A4896A83E0487089E2B90C9AE57C8A"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU07",
+          "path": "BaseThemes/CY26SU07.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "absentismo03863789170191456.png",
+          "path": "absentismo03863789170191456.png",
+          "type": "Image"
+        },
+        {
+          "name": "atestado-medico358046577766422.png",
+          "path": "atestado-medico358046577766422.png",
+          "type": "Image"
+        },
+        {
+          "name": "ausente949623728153648.png",
+          "path": "ausente949623728153648.png",
+          "type": "Image"
+        },
+        {
+          "name": "avaliar11350698804446868.png",
+          "path": "avaliar11350698804446868.png",
+          "type": "Image"
+        },
+        {
+          "name": "carteira-de-identidade7959390740180029.png",
+          "path": "carteira-de-identidade7959390740180029.png",
+          "type": "Image"
+        },
+        {
+          "name": "demissao5068469677463077.png",
+          "path": "demissao5068469677463077.png",
+          "type": "Image"
+        },
+        {
+          "name": "despesas11208750837552539.png",
+          "path": "despesas11208750837552539.png",
+          "type": "Image"
+        },
+        {
+          "name": "limpar-limpo8573875547706717.png",
+          "path": "limpar-limpo8573875547706717.png",
+          "type": "Image"
+        },
+        {
+          "name": "lupa6122868551390473.png",
+          "path": "lupa6122868551390473.png",
+          "type": "Image"
+        },
+        {
+          "name": "multidao-de-usuarios5998232315987957.png",
+          "path": "multidao-de-usuarios5998232315987957.png",
+          "type": "Image"
+        },
+        {
+          "name": "Slide17357476213058993.PNG",
+          "path": "Slide17357476213058993.PNG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide59316329073628561.PNG",
+          "path": "Slide59316329073628561.PNG",
+          "type": "Image"
+        },
+        {
+          "name": "substituicao_(1)6021184267475725.png",
+          "path": "substituicao_(1)6021184267475725.png",
+          "type": "Image"
+        },
+        {
+          "name": "trabalhando_(1)3117224574938472.png",
+          "path": "trabalhando_(1)3117224574938472.png",
+          "type": "Image"
+        },
+        {
+          "name": "Slide2685680646171879.PNG",
+          "path": "Slide2685680646171879.PNG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide331468060178264146.PNG",
+          "path": "Slide331468060178264146.PNG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide44891776600521076.PNG",
+          "path": "Slide44891776600521076.PNG",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true,
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
+  }
+}

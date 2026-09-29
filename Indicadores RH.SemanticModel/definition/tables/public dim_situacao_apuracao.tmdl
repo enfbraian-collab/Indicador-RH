@@ -1,0 +1,115 @@
+table 'public dim_situacao_apuracao'
+	lineageTag: 6f04f171-ce7c-4456-8083-e00c296a835d
+
+	column id_situacao_apuracao
+		dataType: int64
+		formatString: 0
+		lineageTag: f32b52e3-12fd-440f-9b56-b3c4b74c2d1b
+		summarizeBy: none
+		sourceColumn: id_situacao_apuracao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Periodo Apuracao' =
+			
+			IF(
+			    CONTAINSSTRING(
+			        LOWER('public dim_situacao_apuracao'[descricao_situacao]),
+			        "noturno"
+			    ),
+			    "Noturno",
+			    "Diurno"
+			)
+		lineageTag: dd8476e1-2427-4ad3-b0c7-81a9bd5321bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_situacao
+		dataType: string
+		lineageTag: 95f4f34a-4bb0-4ce4-9844-dbe93652847a
+		summarizeBy: none
+		sourceColumn: descricao_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_situacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 303f3c4c-793c-4f04-98e4-773a53e762a0
+		summarizeBy: none
+		sourceColumn: tipo_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_situacao_apuracao' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database(
+				        "10.10.10.22",
+				        "rh_40",
+				        [CommandTimeout=#duration(0, 2, 0, 0)]
+				    ),
+				
+				    public_dim_apuracao_situacao =
+				        Fonte{[Schema="public", Item="dim_apuracao_situacao"]}[Data],
+				
+				    // Remove duplicidade somente se a coluna existir
+				    #"Duplicatas Removidas" =
+				        if Table.HasColumns(
+				            public_dim_apuracao_situacao,
+				            {"id_situacao_apuracao"}
+				        )
+				        then
+				            Table.Distinct(
+				                public_dim_apuracao_situacao,
+				                {"id_situacao_apuracao"}
+				            )
+				        else
+				            public_dim_apuracao_situacao,
+				
+				    // Tipos que gostaríamos de aplicar
+				    TiposDesejados = {
+				        {"id_situacao_apuracao", Int64.Type},
+				        {"tipo_situacao", Int64.Type}
+				    },
+				
+				    // Mantém somente as colunas que existem atualmente
+				    TiposExistentes =
+				        List.Select(
+				            TiposDesejados,
+				            each Table.HasColumns(
+				                #"Duplicatas Removidas",
+				                {_{0}}
+				            )
+				        ),
+				
+				    // Altera somente as colunas existentes
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            #"Duplicatas Removidas",
+				            TiposExistentes
+				        ),
+				
+				    // Segunda remoção de duplicidade protegida
+				    #"Duplicatas Removidas1" =
+				        if Table.HasColumns(
+				            #"Tipo Alterado",
+				            {"id_situacao_apuracao"}
+				        )
+				        then
+				            Table.Distinct(
+				                #"Tipo Alterado",
+				                {"id_situacao_apuracao"}
+				            )
+				        else
+				            #"Tipo Alterado"
+				
+				in
+				    #"Duplicatas Removidas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

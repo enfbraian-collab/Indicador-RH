@@ -1,0 +1,39 @@
+table 'public dim_empresa'
+	lineageTag: 092e23fd-e2b4-4cba-99a5-1008cc454814
+
+	column id_cod_empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: d8b58969-fdb4-462a-921d-227ec80cea27
+		summarizeBy: none
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_empresa
+		dataType: string
+		lineageTag: 0ca84e7a-a4e1-4f40-b1fe-e28f936b5383
+		summarizeBy: none
+		sourceColumn: descricao_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_empresa' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_empresa = Fonte{[Schema="public",Item="dim_empresa"]}[Data],
+				    #"Valor Substituído" = Table.ReplaceValue(public_dim_empresa,"Empresa 1","Hospital de Base",Replacer.ReplaceText,{"descricao_empresa"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","Empresa 2","Estágiarios / Menores aprendizes",Replacer.ReplaceText,{"descricao_empresa"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","Hospital de Base","FUNFARME",Replacer.ReplaceText,{"descricao_empresa"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","Empresa 5","Plantões",Replacer.ReplaceText,{"descricao_empresa"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído3",{{"id_cod_empresa", Int64.Type}}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Tipo Alterado", {"id_cod_empresa"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

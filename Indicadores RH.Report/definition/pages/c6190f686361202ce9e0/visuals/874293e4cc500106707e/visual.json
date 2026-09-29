@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "874293e4cc500106707e",
+  "position": {
+    "x": 954.05204460966547,
+    "y": 360.4460966542751,
+    "z": 1000,
+    "height": 165,
+    "width": 300,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public.dCalendario"
+                    }
+                  },
+                  "Property": "Mês Número"
+                }
+              },
+              "queryRef": "public.dCalendario.Mês Número",
+              "nativeQueryRef": "Mês Número"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

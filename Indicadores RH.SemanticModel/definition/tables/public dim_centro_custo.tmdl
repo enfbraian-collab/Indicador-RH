@@ -1,0 +1,185 @@
+table 'public dim_centro_custo'
+	lineageTag: ec18e576-bad0-4525-9b85-b734ac64946d
+
+	column id_centro_custo
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ca4842f-37c3-4a18-b955-72633c57df71
+		summarizeBy: none
+		sourceColumn: id_centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_centro_custo
+		dataType: string
+		lineageTag: 66bfe4cd-87ec-4d15-ac3d-05c257c550be
+		summarizeBy: none
+		sourceColumn: descricao_centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Instituição CC' =
+			
+			VAR CC =
+			    UPPER(
+			        TRIM(
+			            'public dim_centro_custo'[descricao_centro_custo]
+			        )
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        LEFT(CC, 2) = "PM", "PREFEITURA MUNICIPAL",
+			        LEFT(CC, 2) = "FF", "FUNFARME",
+			        LEFT(CC, 3) = "AMB", "AMBULATÓRIO",
+			        LEFT(CC, 2) = "HB", "HOSPITAL DE BASE",
+			        LEFT(CC, 3) = "HCM", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        LEFT(CC, 2) = "HF", "HF",
+			        LEFT(CC, 3) = "ESP", "ESPECIALIDADE",
+			        LEFT(CC, 6) = "CEDMAC", "FUNFARME",
+			        LEFT(CC, 5) = "EQUIP", "FUNFARME",
+			        LEFT(CC, 2) = "LM", "LUCY MONTORO",
+			        LEFT(CC, 4) = "HCCAT", "FUNFARME",
+			        LEFT(CC, 4) = "1091", "HOSPITAL DE BASE",
+			        LEFT(CC, 11) = "FP COAPRIMO", "FUNFARME",
+			        LEFT(CC, 3) = "CIP", "FUNFARME",
+			        LEFT(CC, 3) = "AME", "AME",
+			        LEFT(CC, 3) = "LMF", "FUNFARME",
+			        LEFT(CC, 2) = "FP", "FUNFARME",
+			
+			        LEFT(CC, 20) = "PORTARIA AMBULATORIO", "AMBULATÓRIO",
+			        LEFT(CC, 12) = "PORTARIA HCM", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        LEFT(CC, 19) = "NUCLEO DE SAUDE DIG", "FUNFARME",
+			        LEFT(CC, 13) = "MED FISIATRIA", "FUNFARME",
+			        LEFT(CC, 17) = "ACADEMIA FUNFARME", "FUNFARME",
+			        LEFT(CC, 26) = "GERENCIA SAUDE SUPLEMENTAR", "HOSPITAL DE BASE",
+			        LEFT(CC, 9) = "MARKETING", "FUNFARME",
+			        LEFT(CC, 18) = "CENTRAL DE PRORRO", "FUNFARME",
+			        LEFT(CC, 21) = "PRONTO ATENDIMENTO SUS", "HOSPITAL DE BASE",
+			        LEFT(CC, 22) = "ANGIOGRAFIA/HEMODINAMICA", "FUNFARME",
+			
+			        LEFT(CC, 26) = "ALMOXARIFADO AME FERNAND", "AME FERNANDÓPOLIS",
+			        LEFT(CC, 31) = "ALMOXARIFADO LUCY MONTORO FER", "AME FERNANDÓPOLIS",
+			
+			        LEFT(CC, 15) = "ALMOXARIFADO S.N", "HOSPITAL DE BASE",
+			
+			        "OUTROS"
+			    )
+		lineageTag: d0b6fbd3-740e-470a-b8c6-801b131bc614
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Filtro CC' =
+			
+			VAR CC =
+			    UPPER(TRIM('public dim_centro_custo'[descricao_centro_custo]))
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    -- =====================================================
+			    -- UTIs
+			    -- =====================================================
+			    CC IN {
+			        "HB 7 UTI GERAL CONV",
+			        "HB 1 UTI BL D",
+			        "HB 5 ANDAR BL A UTI GERAL IV",
+			        "HB 5 Andar Bloco A UTI Clnica",
+			        "HB 5 UTI GERAL BLOCO B",
+			        "HB 7º UTI GERAL CONV",
+			        "HB 7 UTI GERAL SUS",
+			        "HB UTI DE CUIDADOS CONTINUADOS 4 BL A",
+			        "HB UTI NEURO",
+			        "UTI GERAL 2"
+			    },
+			    "UTI",
+			
+			    -- =====================================================
+			    -- ENFERMARIAS SUS
+			    -- =====================================================
+			    CC IN {
+			        "1091 - HB 4 ENFERMARIA GERIATRIA BL B",
+			        "HB  4 andar Enfermaria Oncolgica",
+			        "HB  4 Andar Hemato",
+			        "HB  5 ENFERMARIA BLOCO A SUS",
+			        "HB 2 ENFERMARIA TRAUMA SUS",
+			        "HB 2ENFERMARIA DIP SUS ",
+			        "HB 3 ENFERMARIA ORTOPEDIA BL B",
+			        "HB 3 ENFERMARIA SUS Bl A",
+			        "HB 4 ENFERMARIA SUS",
+			        "HB 5 AND AVC SUS",
+			        "HB 5ENFERMARIA BL B",
+			        "HB 6 SUS ENF BL B",
+			        "HB 6º ENFERMARIA CONTINGENCIA BL A",
+			        "HB 6º ENFERMARIA DENGUE BL B",
+			        "HB 6 IODOTERAPIA",
+			        "HB 8ENFERMARIA CIRURGIA SUS",
+			        "HB 8TRANSPLANTE",
+			        "HB SS EMERG SUS  INTERNADO"
+			    },
+			    "ENFERMARIA SUS",
+			
+			    -- =====================================================
+			    -- ENFERMARIAS CONVÊNIO
+			    -- =====================================================
+			    CC IN {
+			        "HB 3ENFERMARIA CONV BL C",
+			        "HB 4 ENFERMARIA BLOCO D",
+			        "HB 4ENFERMARIA BLOCO C CONVENIO",
+			        "HB 5 ENFERMARIA BLOCO C",
+			        "HB 6ENFERMARIA CONV",
+			        "HB 8 ENFERMARIA BLOCO D",
+			        "HB 8 ENFERMARIA BLOCO C"
+			    },
+			    "ENFERMARIA CONVÊNIO",
+			
+			    -- =====================================================
+			    -- EMERGÊNCIA SUS
+			    -- =====================================================
+			    CC IN {
+			        "HB SS EMERG SUS PA",
+			        "HB SUBSOLO EMERGENCIA SUS ADM"
+			    },
+			    "EMERGÊNCIA SUS",
+			
+			    -- =====================================================
+			    -- EMERGÊNCIA CONVÊNIO
+			    -- =====================================================
+			    CC IN {
+			        "HB PRONTO ATENDIMENTO CONV ADM",
+			        "HB RECEPCAO INTERNACAO CONV",
+			        "HB TERREO EMERG CONV QUARTOS",
+			        "HB TERREO SALA DE GESSO CONV"
+			    },
+			    "EMERGÊNCIA CONVÊNIO",
+			
+			    -- =====================================================
+			    -- DEMAIS CENTROS DE CUSTO
+			    -- =====================================================
+			    "OUTROS"
+			)
+		lineageTag: 65e12077-0375-47a3-b85f-3bf12385a47b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_centro_custo' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_centro_custo = Fonte{[Schema="public",Item="dim_centro_custo"]}[Data],
+				    #"Duplicatas Removidas" = Table.Distinct(public_dim_centro_custo, {"id_centro_custo"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"id_centro_custo", Int64.Type}}),
+				    #"Duplicatas Removidas1" = Table.Distinct(#"Tipo Alterado", {"id_centro_custo"})
+				in
+				    #"Duplicatas Removidas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

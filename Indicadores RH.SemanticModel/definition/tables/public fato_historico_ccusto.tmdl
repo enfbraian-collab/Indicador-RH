@@ -1,0 +1,790 @@
+table 'public fato_historico_ccusto'
+	lineageTag: 2fd26845-ee34-4ac9-b5ea-2f37d44ad321
+
+	column id_cod_empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d7ec1b7-8961-4b8f-9903-ad2052a885fb
+		summarizeBy: sum
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_colaborador
+		dataType: int64
+		formatString: 0
+		lineageTag: 8adf0e61-bc6b-4a87-ad03-b0d13b074e41
+		summarizeBy: sum
+		sourceColumn: id_tipo_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column cracha
+		dataType: int64
+		formatString: 0
+		lineageTag: dccc733f-cba2-4221-927e-1a165bfe370a
+		summarizeBy: sum
+		sourceColumn: cracha
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_centro_custo
+		dataType: int64
+		formatString: 0
+		lineageTag: 91ec78dc-2b92-42c0-9f10-982fbb71b8e1
+		summarizeBy: sum
+		sourceColumn: id_centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_centro_custo
+		dataType: string
+		lineageTag: 4c635aac-fda1-4e4d-ae79-73070b49c5a1
+		summarizeBy: none
+		sourceColumn: descricao_centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_inicio_cc
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f81540a-729f-44ef-b3e2-3d3ef247d477
+		summarizeBy: none
+		sourceColumn: data_inicio_cc
+
+		variation Variation
+			isDefault
+			relationship: ca3557e7-c227-4661-b2a2-29de3b375b3a
+			defaultHierarchy: LocalDateTable_760452df-3be0-4b46-84b8-e400e4af3f76.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_fim_cc
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ac4818f3-5762-4ab6-9cf6-e728e1768254
+		summarizeBy: none
+		sourceColumn: data_fim_cc
+
+		variation Variation
+			isDefault
+			relationship: 62bd24b2-a65e-4f36-9488-1b798dc7c017
+			defaultHierarchy: LocalDateTable_f9ff3bf2-0d6c-4ffd-b036-99c223648efa.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: e371218d-002b-46b5-b51b-dea27773cf07
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Instituição CC Histórico' =
+			
+			VAR CC =
+			    UPPER(
+			        TRIM(
+			            'public fato_historico_ccusto'[descricao_centro_custo]
+			        )
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        CC = "PRONTO SOCORRO MUNICIPAL", "HOSPITAL MUNICIPAL",
+			        CC = "DEMITIDOS ATE 31/12/1998", "HOSPITAL DE BASE",
+			        CC = "2 ANDAR - CLINICA", "HOSPITAL DE BASE",
+			        CC = "UTI CARDIOLOGICA-5 ANDAR", "HOSPITAL DE BASE",
+			        CC = "PEDIATRIA SUBSOLO", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "BLOCO A-CONV.4 ANDAR PED", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "UTI SEMI PED.SUS/C-BL. A 4AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "CENTRO CIRURGICO - 1 AND", "HOSPITAL DE BASE",
+			        CC = "DIALISE/HEMODIALISE-ENFER", "HOSPITAL DE BASE",
+			        CC = "HEMODIALISE", "HOSPITAL DE BASE",
+			        CC = "ADMINISTRACAO HEMODIALISE", "HOSPITAL DE BASE",
+			        CC = "2 ANDAR - DIP", "HOSPITAL DE BASE",
+			        CC = "UTI GERAL - 7 ANDAR", "HOSPITAL DE BASE",
+			        CC = "5 ANDAR - ALA", "HOSPITAL DE BASE",
+			        CC = "BLOCO A - CONVENIOS", "HOSPITAL DE BASE",
+			        CC = "EEG - VIDEO", "HOSPITAL DE BASE",
+			        CC = "CENTRAL MAT.ESTERILIZADO", "HOSPITAL DE BASE",
+			        CC = "UNIDADE POSTOS PREFEITURA", "PREFEITURA MUNICIPAL",
+			        CC = "DIALISE", "HOSPITAL DE BASE",
+			        CC = "EMERGENCIA- PA", "HOSPITAL DE BASE",
+			        CC = "UTI NEUROLOGICA - 5 ANDA", "HOSPITAL DE BASE",
+			        CC = "ENDOSCOPIA", "HOSPITAL DE BASE",
+			        CC = "FARMACIA CENTRO CIRURGICO", "HOSPITAL DE BASE",
+			        CC = "EMERGENCIA - INTERNACAO", "HOSPITAL DE BASE",
+			        CC = "BERCARIO NORMAL-4 ANDAR", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "6 ANDAR - ALA", "HOSPITAL DE BASE",
+			        CC = "4 ANDAR - GO -UNID.INTER", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "CENTRO OBSTETRICO 4AND.BL.B", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "5 ANDAR -UNIDADE INTERMED", "HOSPITAL DE BASE",
+			        CC = "ADMINISTRACAO ENDOSCOPIA", "HOSPITAL DE BASE",
+			        CC = "3 ANDAR - ALA", "HOSPITAL DE BASE",
+			        CC = "CENTRO OBSTETRICO-4 AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "EMERGENCIA-ADMINISTRACAO", "HOSPITAL DE BASE",
+			        CC = "PRONTO ATENDIMENTO SUS", "HOSPITAL DE BASE",
+			        CC = "6 ANDAR-TRANSP.FIG/RIM/C", "HOSPITAL DE BASE",
+			        CC = "6ANDAR BL.B TRANSPL.FIGAD/RIM", "HOSPITAL DE BASE",
+			        CC = "2 ANDAR-PEDIATRIA-UNID", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "UTI PEDIATRICA - SUBSOLO", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "UTI - PEDIATRICA 5.ANDAR", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "UTI CARDIO SEMI PED-BL.A 5AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "UTI CARDIO PEDIATRI-BL.B 5AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "BLOCO A - CONV. 3 ANDAR", "HOSPITAL DE BASE",
+			        CC = "U.T.I.-PEDIATRIA/NEONATAL", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "C.C.I.", "HOSPITAL DE BASE",
+			        CC = "HM FARMACIA SATELITE CENTRO CIRURGICO", "HOSPITAL DE BASE",
+			        CC = "SAME", "FUNFARME",
+			        CC = "ANATOMIA PATOLOGICA", "FUNFARME",
+			        CC = "HM PABX", "HOSPITAL MUNICIPAL",
+			        CC = "SEGURANCA", "HOSPITAL DE BASE",
+			        CC = "PORTARIA HB", "HOSPITAL DE BASE",
+			        CC = "CADASTRO", "HOSPITAL DE BASE",
+			        CC = "CENTRAL DE PRORROGAO", "HOSPITAL DE BASE",
+			        CC = "FATURAMENTO - AIH", "HOSPITAL DE BASE",
+			        CC = "FATURAMENTO SUS INTERNADOS", "HOSPITAL DE BASE",
+			        CC = "HM DIRETORIA", "HOSPITAL MUNICIPAL",
+			        CC = "RADIOLOGIA", "HOSPITAL DE BASE",
+			        CC = "TOMOGRAFIA", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO - BIOQUIMICA", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO NOTURNO", "HOSPITAL DE BASE",
+			        CC = "LABORAT.-COLETA E SEPARAC", "HOSPITAL DE BASE",
+			        CC = "COLETA/SEPARACAO", "HOSPITAL DE BASE",
+			        CC = "HM FATURAMENTO", "HOSPITAL MUNICIPAL",
+			        CC = "PROTOCOLO", "HOSPITAL DE BASE",
+			        CC = "T.I. - CONSULTORIA", "HOSPITAL DE BASE",
+			        CC = "HCAT - ADMINISTRACAO", "HOSPITAL DE BASE",
+			        CC = "HCAT - ADMINISTRAAO", "HOSPITAL DE BASE",
+			        CC = "HM ENFERMARIA", "HOSPITAL MUNICIPAL",
+			        CC = "ECG", "HOSPITAL DE BASE",
+			        CC = "ULTRASSONOGRAFIA", "HOSPITAL DE BASE",
+			        CC = "FATURAMENTO - CUSTOS", "HOSPITAL DE BASE",
+			        CC = "HM SHL", "HOSPITAL DE BASE",
+			        CC = "RADIOLOGIA- ADMINISTRACAO", "HOSPITAL DE BASE",
+			        CC = "HM RECEPO INTERNAO", "HOSPITAL MUNICIPAL",
+			        CC = "LABORATORIO - UROANALISE", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO - LIQUOR", "HOSPITAL DE BASE",
+			        CC = "LIQUOR", "HOSPITAL DE BASE",
+			        CC = "ASSESSORIA ADMINISTRATIVA", "HOSPITAL DE BASE",
+			        CC = "DIRETORIA ADMINIST. HOSPITALAR", "HOSPITAL DE BASE",
+			        CC = "FATURAMENTO SUS AMBULATORIAL", "AMBULATÓRIO",
+			        CC = "HM CENTRO CIRURGICO", "HOSPITAL MUNICIPAL",
+			        CC = "LAB.DE PATOL.CLINICA-ADMI", "HOSPITAL DE BASE",
+			        CC = "CENTRAL AGEND. EXAMES/CONSULTAS SUS", "HOSPITAL DE BASE",
+			        CC = "RADIOLOGIA-AMBULATORIO", "HOSPITAL DE BASE",
+			        CC = "RAIO-X AMBULATORIAL", "HOSPITAL DE BASE",
+			        CC = "EXAME DE VIDEO EEG", "HOSPITAL DE BASE",
+			        CC = "ADMINISTRACAO CIENCIAS NEUROL.", "HOSPITAL DE BASE",
+			        CC = "POSTO DE COLETA - CONV.", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO BERNARDINO", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO - SOROLOGIA 2", "HOSPITAL DE BASE",
+			        CC = "METODOS GRAFICOS - ADMIN", "HOSPITAL DE BASE",
+			        CC = "COMISSO REVISO DE PRONTUARIOS", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO-MICROBIOLOGIA", "HOSPITAL DE BASE",
+			        CC = "MICROBIOLOGIA", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO - HEMATOLOGIA", "HOSPITAL DE BASE",
+			        CC = "HEMATOLOGIA", "HOSPITAL DE BASE",
+			        CC = "LABORATORIO - SOROLOGIA 1", "HOSPITAL DE BASE",
+			        CC = "HOLTER", "HOSPITAL DE BASE",
+			        CC = "UROANALISE", "HOSPITAL DE BASE",
+			        CC = "BIOQUIMICA/LAB.CENTRAL", "HOSPITAL DE BASE",
+			        CC = "ELETRONEUROMIOGRAFIA", "HOSPITAL DE BASE",
+			        CC = "SECRETARIAS", "HOSPITAL DE BASE",
+			        CC = "CIRURGIA GERAL", "HOSPITAL DE BASE",
+			        CC = "AG.TRANSFUS.BCO SANGUE TERREO", "HOSPITAL DE BASE",
+			        CC = "NCLEO DE O.P.M.E.", "HOSPITAL DE BASE",
+			        CC = "HM ENFERMARIA CIRURGICA", "HOSPITAL MUNICIPAL",
+			        CC = "DIALISE - ADMINISTRACAO", "HOSPITAL DE BASE",
+			        CC = "UROLOGIA", "HOSPITAL DE BASE",
+			        CC = "UROLOGIA - AMBULATORIO", "HOSPITAL DE BASE",
+			        CC = "MARCENARIA", "HOSPITAL DE BASE",
+			        CC = "MAMOGRAFIA", "HOSPITAL DE BASE",
+			        CC = "6 ANDAR TRANSP.MED.OSSEA", "HOSPITAL DE BASE",
+			        CC = "EMER.PED.SUS/CONV-BL.A TERREO", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        CC = "RPA-REC. POS ANESTESIA 1", "HOSPITAL DE BASE",
+			        CC = "EMERGENCIA - ADM.ESTOQUES", "HOSPITAL DE BASE",
+			        CC = "LABORAT.- LAVAGEM E EXPUR", "HOSPITAL DE BASE",
+			        CC = "AVOHB", "HOSPITAL DE BASE",
+			
+			        LEFT(CC, 2) = "PM", "PREFEITURA MUNICIPAL",
+			        LEFT(CC, 2) = "FF", "FUNFARME",
+			        LEFT(CC, 3) = "AMB", "AMBULATÓRIO",
+			        LEFT(CC, 2) = "HB", "HOSPITAL DE BASE",
+			        LEFT(CC, 3) = "HCM", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        LEFT(CC, 2) = "HF", "HF",
+			        LEFT(CC, 3) = "ESP", "ESPECIALIDADE",
+			        LEFT(CC, 6) = "CEDMAC", "FUNFARME",
+			        LEFT(CC, 5) = "EQUIP", "FUNFARME",
+			        LEFT(CC, 2) = "LM", "LUCY MONTORO",
+			        LEFT(CC, 4) = "HCCAT", "FUNFARME",
+			        LEFT(CC, 4) = "1091", "HOSPITAL DE BASE",
+			        LEFT(CC, 11) = "FP COAPRIMO", "FUNFARME",
+			        LEFT(CC, 3) = "CIP", "FUNFARME",
+			        LEFT(CC, 3) = "AME", "AME",
+			        LEFT(CC, 3) = "LMF", "FUNFARME",
+			        LEFT(CC, 2) = "FP", "FUNFARME",
+			        LEFT(CC, 20) = "PORTARIA AMBULATORIO", "AMBULATÓRIO",
+			        LEFT(CC, 12) = "PORTARIA HCM", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			        LEFT(CC, 19) = "NUCLEO DE SAUDE DIG", "FUNFARME",
+			        LEFT(CC, 13) = "MED FISIATRIA", "FUNFARME",
+			        LEFT(CC, 17) = "ACADEMIA FUNFARME", "FUNFARME",
+			        LEFT(CC, 26) = "GERENCIA SAUDE SUPLEMENTAR", "HOSPITAL DE BASE",
+			        LEFT(CC, 9) = "MARKETING", "FUNFARME",
+			        LEFT(CC, 18) = "CENTRAL DE PRORRO", "FUNFARME",
+			        LEFT(CC, 21) = "PRONTO ATENDIMENTO SUS", "HOSPITAL DE BASE",
+			        LEFT(CC, 22) = "ANGIOGRAFIA/HEMODINAMICA", "FUNFARME",
+			        LEFT(CC, 26) = "ALMOXARIFADO AME FERNAND", "AME FERNANDÓPOLIS",
+			        LEFT(CC, 31) = "ALMOXARIFADO LUCY MONTORO FER", "AME FERNANDÓPOLIS",
+			        LEFT(CC, 15) = "ALMOXARIFADO S.N", "HOSPITAL DE BASE",
+			
+			        "OUTROS"
+			    )
+		lineageTag: 8f58fb4b-da33-4187-806d-d0ad6b807553
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1Instituição CC Histórico' =
+			
+			VAR CC =
+			    UPPER(
+			        TRIM(
+			            'public fato_historico_ccusto'[descricao_centro_custo]
+			        )
+			    )
+			
+			VAR CHAVE =
+			    'public fato_historico_ccusto'[CC Chave Limpa]
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    // =========================================================
+			    // HOSPITAL MUNICIPAL
+			    // =========================================================
+			    CHAVE IN {
+			        "HMAMBULATORIO",
+			        "HMRECEPOAMBULATORIO",
+			        "HMSAME",
+			        "PRESTSERVHMDOMINGOMARCOLINOBRAILESJRP",
+			        "HMMANUTENCAO",
+			        "HMEQUIPESMULTIDISCIPLINARES",
+			        "HMUTI",
+			        "HMNUCLEOINTERNOREGULACAONIR",
+			        "HMALMOXARIFADOCENTRAL",
+			        "HMAREASCOMUNS",
+			        "HMROUPARIA",
+			        "HMFARMACIASATELITECENTRAL",
+			        "HMSERVICOSDEGESTAOEADMINISTRATIVOS",
+			        "HMCENTRALDEMATERIALESTERELIZADO",
+			        "HMCOZINHA",
+			        "HMDIAGNOSTICODEIMAGEMSADT",
+			        "HMPORTARIA",
+			        "HMNTI",
+			        "HOSPITALMUNICIPALDRMARCOLINOSINTETICO",
+			        "HMIRASSOLADMINISTRACAO"
+			    }, "HOSPITAL MUNICIPAL",
+			
+			    // =========================================================
+			    // PREFEITURA MUNICIPAL
+			    // =========================================================
+			    CHAVE IN {
+			        "POSTOJAGUARE",
+			        "PRONTOSOCMUNMIRASSOL",
+			        "UBSSTOANTONIO",
+			        "POSTORIOPRETOI",
+			        "PSF",
+			        "ATENOBSICA",
+			        "UPATAQDIAGNOSTICO",
+			        "UPATAQMEDICO",
+			        "UPATAQPRONTOSOCORRO",
+			        "UPATAQFATURAMENTO",
+			        "UPATAQRECEPCAO",
+			        "UPATAQSHL",
+			        "POSTOESTORIL",
+			        "PSMIRASSOL"
+			    }, "PREFEITURA MUNICIPAL",
+			
+			    // =========================================================
+			    // LUCY MONTORO
+			    // =========================================================
+			    CHAVE IN {
+			        "LUCYMONTOROFERNANDOPOLISSINTETICO",
+			        "LUCYCONTROLADORIA",
+			        "LUCYMONTORO",
+			        "ALMOXARIFADOLUCYMONTOROFERNANDOPOLIS"
+			    }, "LUCY MONTORO",
+			
+			    // =========================================================
+			    // HF / HEMOCENTRO
+			    // =========================================================
+			    CHAVE IN {
+			        "HVOTDISTRIBUICAO",
+			        "HVOTCOLETA",
+			        "HVOTADMINISTRACAO",
+			        "HVOTSERVICOSOCIAL",
+			        "HCATCOLETA",
+			        "HCATIMUNOHEMATOLOGIA",
+			        "HCATDISTRIBUICAO",
+			        "HCATFRACIONAMENTO",
+			        "HCATSOROLOGIA",
+			        "HCATSERVICOSOCIAL",
+			        "HEMOCENTROII",
+			        "PRESTSERVAOHEMOCATANDUVA"
+			    }, "HF",
+			
+			    // =========================================================
+			    // AMBULATÓRIO
+			    // =========================================================
+			    CHAVE IN {
+			        "TERAPIAOCUPACIONALAMBULAT",
+			        "FISIOTERAPIASUSAMBULATORIO",
+			        "OTORRINOAMBULATORIO",
+			        "GINECOLOGIAAMBULATORIO",
+			        "CLINICAAMBULATORIO",
+			        "PSICOLOGIAAMBULATORIO",
+			        "FONOAUDIOLOGIAAMBULATORIO",
+			        "ASSISTENSOCIALAMBULATORIO",
+			        "DOENCINFECTOPARASITAISAMB",
+			        "ORTOPEDIAAMBULATORIO",
+			        "NEUROLOGIAAMBULATORIO",
+			        "CIRURGIACARDIACAAMBULAT",
+			        "VASCULARAMBULATORIO",
+			        "GASTROENTEOROLOGIAAMBULAT",
+			        "REUMATOLOGIAAMBULATORIO",
+			        "HEMATOLOGIAAMBULATORIO",
+			        "CARDIOLOGIAAMBULATORIO",
+			        "PSIQUIATRIAAMBULATORIO",
+			        "NEUROCIRURGIAAMBULATORIO",
+			        "PLASTICAAMBULATORIO",
+			        "ENDOCRINOLOGIAAMBULATORIO",
+			        "NEFROLOGIAAMBULATORIO",
+			        "ACUNPUNTURAAMBULATORIO",
+			        "PNEUMOLOGIAAMBULATORIO"
+			    }, "AMBULATÓRIO",
+			
+			    // =========================================================
+			    // FUNFARME
+			    // =========================================================
+			    CHAVE IN {
+			        "HONORARIOSMEDICOS",
+			        "NAOUSARMEDICOSDESPGERAIS",
+			        "FACULDADE",
+			        "COORDENADORESDOCENTES",
+			        "FACULDADEDEODONTOEDF",
+			        "MDICOSCONTRATADOS",
+			        "TISISTEMAS",
+			        "TIINFRAESTRUTURA",
+			        "NCLEODESADEDIGITAL",
+			        "COORDENDEPTOPESSOALERH",
+			        "CHEFIAMEDICA",
+			        "POSTOAVANADOTELESAUDE",
+			        "EMPREGOAPOIADOPRONAS",
+			        "PRONASESPORTEREABILITACAOEINCLUSAO",
+			        "COREMU",
+			        "COREME",
+			        "CONSELHOADMINISTRATIVO",
+			        "CONSELHODECURADORES",
+			        "DIRETORIAEXECUTIVA",
+			        "COMERCIAL",
+			        "PRESTSERVAFUNFARME",
+			        "PRESTSERVADMCONTRHAOHEMO"
+			    }, "FUNFARME",
+			
+			    // =========================================================
+			    // HOSPITAL DE BASE
+			    // =========================================================
+			    CHAVE IN {
+			        "EMERGENCIAUTI",
+			        "QUIMIOTERAPIA",
+			        "HEMODINAMICA",
+			        "CENTRALDEALTAS",
+			        "UTIGERAL7ANDCONV",
+			        "LARORATORIODEGASTRO",
+			        "RADIOLOGIAENFERMAGEM",
+			        "BLOCOACONVENIO6AND",
+			        "UTINEONATALSUBSOLO",
+			        "OPERACIONAIS",
+			        "6ANDARHOSPTMO",
+			        "CALDEIRA",
+			        "BLOCOAUTIGERAL7ANDAR",
+			        "3ANDARCONVENIOS",
+			        "TERAPIAOCUPACIONAL",
+			        "FISIOTERAPIA",
+			        "HEMODINAANGIOGENFERMAG",
+			        "BLOCOAINTERMEDIARIO",
+			        "ELETRICA",
+			        "PSICOLOGIA",
+			        "TAPECARIA",
+			        "UTIGERAL2",
+			        "PROCTOLOGIA",
+			        "UTICIRURGICA",
+			        "MEDICINANUCLEARADMIN",
+			        "ANGIOGRAFIA",
+			        "PEDIATRICA",
+			        "EXAMEDEPOLISSONOGRAFIA",
+			        "BLOCOACONV5ANDARPED",
+			        "FONOAUDIOLOGIA",
+			        "BLOCOAFARM7ANDAR",
+			        "OTORRINOLARINGOLOGIAPED",
+			        "ALMOXARIFADOSND",
+			        "MEDICINANUCLEARMEDICOS",
+			        "GINECOLOGIA",
+			        "SERVIOSOCIALPACIENTE",
+			        "DIP(INFECTOLOGIA)",
+			        "RESSONANCIAMAGNETICA",
+			        "BLOCOACONVFARMACIA3",
+			        "UTIEMERGSUSBLASUBSOLO",
+			        "5ANDBLACLCIRPEDADUCONV",
+			        "PSIQUIATRIA",
+			        "BLOCOA5ANDARALA",
+			        "CARPINTARIA",
+			        "BLOCOACONVFARM5AND",
+			        "BLOCOACONVFARM6ANDAR",
+			        "LABIMUNOGENETICAMOLECUL",
+			        "CINTILOGRAFIA",
+			        "BLOCOAFARMACIA4AND",
+			        "UTINEOSUSCONVBLA4ANDAR",
+			        "TCTHHOSPITALDIA",
+			        "ANGIOGRAFIAHEMODINAMICA",
+			        "CENTRALDEPREPARAODEKITS",
+			        "OTORRINOADULTO",
+			        "LABORATORIOPARASITOLOGIA",
+			        "6ANDARBLBTCTH",
+			        "CENTRALDEAGENDAMENTOEENTREXAMES",
+			        "UTIPEDSUSCONVBLA4AND",
+			        "MDIAEALTACOMPLEXIDADE",
+			        "URGNCIAEEMERGNCIA",
+			        "FARMACIASATELITE5ANDARBLA",
+			        "4ANDARBLAPEDCLCIRURSUS",
+			        "FAMARCIACENTROOBSTETRBLB",
+			        "ULTRASSONGO4ANDAR",
+			        "SETORDECADASTRO",
+			        "MEDHEMATOLOGIA",
+			        "GESTAOSAUDESUPLEMENTAR",
+			        "CIRURGIAPLASTICA",
+			        "DERMATOLOGIA",
+			        "NEUROCIRURGIA",
+			        "MASTOLOGIA",
+			        "CARDIOLOGIA",
+			        "ENDOCRINOLOGIA",
+			        "NEFROLOGIA",
+			        "COLOPROCTOLOGIA",
+			        "CIRURGIAVASCULAR",
+			        "CIRURGIADOAPARELHODIGESTIVO",
+			        "OFTALMOLOGIA",
+			        "ANESTESIA",
+			        "ORTOPEDIA",
+			        "PATOLOGIA",
+			        "NEUROLOGIA",
+			        "CLINICAMEDICA",
+			        "ACUPUNTURA",
+			        "GASTROENTEROLOGIA",
+			        "PSICOTERAPIA",
+			        "ANESTESIOLOGIA",
+			        "MEDNEFROLOGIA",
+			        "DENSITROMETRIAOSSEA",
+			        "5ANDARCAMARAHIPERBAR",
+			        "XEROX",
+			        "FARMACIAMANIPULACAOQUIMICA",
+			        "LAVAGEM(LAB)",
+			        "PINTURA",
+			        "EEGCONVENCIONAL",
+			        "REPRODUCAOHUMANA",
+			        "NEUROPEDIATRIA",
+			        "NEONATOLOGIA",
+			        "ONCOLOGIA",
+			        "NUTRICAO",
+			        "OBSTETRICIA",
+			        "REUMATOLOGIA",
+			        "AMPLIACAOAMBOTORRINO",
+			        "CIRURGIACARDIACA",
+			        "ERGOMETRIA",
+			        "REGISTROHOSPITALARCANCE",
+			        "GENETICA",
+			        "4ANDARCONVUTISEMI",
+			        "COAPRIMO",
+			        "UNIDPSOPERATRIA5OANDAR",
+			        "NVE",
+			        "CUSTOS",
+			        "RADIOLOGIAMEDICOS",
+			        "CARDIOPEDIATRIA",
+			        "PNEUMOLOGIA",
+			        "MEDINTENSIVISTAINFANTIL",
+			        "LABORATORIOGASTRO",
+			        "COPA6ANDARSUSBLB",
+			        "ANGIOHEMODPROCEDIMENTO",
+			        "HLABMIRASSOL",
+			        "DADEFICIENCIAAUDITIVAAMB",
+			        "ECO",
+			        "PED2(HIV)",
+			        "POLISSONOGRAFIA",
+			        "6ANDARHOSPDIATMO",
+			        "ASSISTENSOCIALRERCHUMANOS",
+			        "BLOCOBFARMACIA5ANDAR",
+			        "4ANDBLBSLRECUPCENTOBST",
+			        "ADMINISTRAMBULCLINICAMEDICA",
+			        "OBRAS8ANDAR",
+			        "2ANDARBLAHOSPDIASUSCON",
+			        "ESTACIONAMENTO",
+			        "METODOSGRAFICOSMEDICOS",
+			        "REGISTROHOSPITALARCANCER",
+			        "UTISEMINEONATALBLA4AND",
+			        "DENSITOMETRIA",
+			        "CCSALARECUPSUSBLA1AND",
+			        "UTISEMICARDIOADULBLB5AND"
+			    }, "HOSPITAL DE BASE",
+			
+			    // =========================================================
+			    // REGRAS EXATAS JÁ EXISTENTES
+			    // =========================================================
+			
+			    CC = "PRONTO SOCORRO MUNICIPAL", "HOSPITAL MUNICIPAL",
+			    CC = "DEMITIDOS ATE 31/12/1998", "HOSPITAL DE BASE",
+			    CC = "2 ANDAR - CLINICA", "HOSPITAL DE BASE",
+			    CC = "UTI CARDIOLOGICA-5 ANDAR", "HOSPITAL DE BASE",
+			    CC = "PEDIATRIA SUBSOLO", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "BLOCO A-CONV.4 ANDAR PED", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "UTI SEMI PED.SUS/C-BL. A 4AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "CENTRO CIRURGICO - 1 AND", "HOSPITAL DE BASE",
+			    CC = "DIALISE/HEMODIALISE-ENFER", "HOSPITAL DE BASE",
+			    CC = "HEMODIALISE", "HOSPITAL DE BASE",
+			    CC = "ADMINISTRACAO HEMODIALISE", "HOSPITAL DE BASE",
+			    CC = "2 ANDAR - DIP", "HOSPITAL DE BASE",
+			    CC = "UTI GERAL - 7 ANDAR", "HOSPITAL DE BASE",
+			    CC = "5 ANDAR - ALA", "HOSPITAL DE BASE",
+			    CC = "BLOCO A - CONVENIOS", "HOSPITAL DE BASE",
+			    CC = "EEG - VIDEO", "HOSPITAL DE BASE",
+			    CC = "CENTRAL MAT.ESTERILIZADO", "HOSPITAL DE BASE",
+			    CC = "UNIDADE POSTOS PREFEITURA", "PREFEITURA MUNICIPAL",
+			    CC = "DIALISE", "HOSPITAL DE BASE",
+			    CC = "EMERGENCIA- PA", "HOSPITAL DE BASE",
+			    CC = "UTI NEUROLOGICA - 5 ANDA", "HOSPITAL DE BASE",
+			    CC = "ENDOSCOPIA", "HOSPITAL DE BASE",
+			    CC = "FARMACIA CENTRO CIRURGICO", "HOSPITAL DE BASE",
+			    CC = "EMERGENCIA - INTERNACAO", "HOSPITAL DE BASE",
+			    CC = "BERCARIO NORMAL-4 ANDAR", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "6 ANDAR - ALA", "HOSPITAL DE BASE",
+			    CC = "4 ANDAR - GO -UNID.INTER", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "CENTRO OBSTETRICO 4AND.BL.B", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "5 ANDAR -UNIDADE INTERMED", "HOSPITAL DE BASE",
+			    CC = "ADMINISTRACAO ENDOSCOPIA", "HOSPITAL DE BASE",
+			    CC = "3 ANDAR - ALA", "HOSPITAL DE BASE",
+			    CC = "CENTRO OBSTETRICO-4 AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "EMERGENCIA-ADMINISTRACAO", "HOSPITAL DE BASE",
+			    CC = "PRONTO ATENDIMENTO SUS", "HOSPITAL DE BASE",
+			    CC = "6 ANDAR-TRANSP.FIG/RIM/C", "HOSPITAL DE BASE",
+			    CC = "6ANDAR BL.B TRANSPL.FIGAD/RIM", "HOSPITAL DE BASE",
+			    CC = "2 ANDAR-PEDIATRIA-UNID", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "UTI PEDIATRICA - SUBSOLO", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "UTI - PEDIATRICA 5.ANDAR", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "UTI CARDIO SEMI PED-BL.A 5AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "UTI CARDIO PEDIATRI-BL.B 5AND", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "BLOCO A - CONV. 3 ANDAR", "HOSPITAL DE BASE",
+			    CC = "U.T.I.-PEDIATRIA/NEONATAL", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "C.C.I.", "HOSPITAL DE BASE",
+			    CC = "HM FARMACIA SATELITE CENTRO CIRURGICO", "HOSPITAL DE BASE",
+			    CC = "SAME", "FUNFARME",
+			    CC = "ANATOMIA PATOLOGICA", "FUNFARME",
+			    CC = "HM PABX", "HOSPITAL MUNICIPAL",
+			    CC = "SEGURANCA", "HOSPITAL DE BASE",
+			    CC = "PORTARIA HB", "HOSPITAL DE BASE",
+			    CC = "CADASTRO", "HOSPITAL DE BASE",
+			    CC = "CENTRAL DE PRORROGAO", "HOSPITAL DE BASE",
+			    CC = "FATURAMENTO - AIH", "HOSPITAL DE BASE",
+			    CC = "FATURAMENTO SUS INTERNADOS", "HOSPITAL DE BASE",
+			    CC = "HM DIRETORIA", "HOSPITAL MUNICIPAL",
+			    CC = "RADIOLOGIA", "HOSPITAL DE BASE",
+			    CC = "TOMOGRAFIA", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO - BIOQUIMICA", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO NOTURNO", "HOSPITAL DE BASE",
+			    CC = "LABORAT.-COLETA E SEPARAC", "HOSPITAL DE BASE",
+			    CC = "COLETA/SEPARACAO", "HOSPITAL DE BASE",
+			    CC = "HM FATURAMENTO", "HOSPITAL MUNICIPAL",
+			    CC = "PROTOCOLO", "HOSPITAL DE BASE",
+			    CC = "T.I. - CONSULTORIA", "HOSPITAL DE BASE",
+			    CC = "HCAT - ADMINISTRACAO", "HOSPITAL DE BASE",
+			    CC = "HCAT - ADMINISTRAAO", "HOSPITAL DE BASE",
+			    CC = "HM ENFERMARIA", "HOSPITAL MUNICIPAL",
+			    CC = "ECG", "HOSPITAL DE BASE",
+			    CC = "ULTRASSONOGRAFIA", "HOSPITAL DE BASE",
+			    CC = "FATURAMENTO - CUSTOS", "HOSPITAL DE BASE",
+			    CC = "HM SHL", "HOSPITAL DE BASE",
+			    CC = "RADIOLOGIA- ADMINISTRACAO", "HOSPITAL DE BASE",
+			    CC = "HM RECEPO INTERNAO", "HOSPITAL MUNICIPAL",
+			    CC = "LABORATORIO - UROANALISE", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO - LIQUOR", "HOSPITAL DE BASE",
+			    CC = "LIQUOR", "HOSPITAL DE BASE",
+			    CC = "ASSESSORIA ADMINISTRATIVA", "HOSPITAL DE BASE",
+			    CC = "DIRETORIA ADMINIST. HOSPITALAR", "HOSPITAL DE BASE",
+			    CC = "FATURAMENTO SUS AMBULATORIAL", "AMBULATÓRIO",
+			    CC = "HM CENTRO CIRURGICO", "HOSPITAL MUNICIPAL",
+			    CC = "LAB.DE PATOL.CLINICA-ADMI", "HOSPITAL DE BASE",
+			    CC = "CENTRAL AGEND. EXAMES/CONSULTAS SUS", "HOSPITAL DE BASE",
+			    CC = "RADIOLOGIA-AMBULATORIO", "HOSPITAL DE BASE",
+			    CC = "RAIO-X AMBULATORIAL", "HOSPITAL DE BASE",
+			    CC = "EXAME DE VIDEO EEG", "HOSPITAL DE BASE",
+			    CC = "ADMINISTRACAO CIENCIAS NEUROL.", "HOSPITAL DE BASE",
+			    CC = "POSTO DE COLETA - CONV.", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO BERNARDINO", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO - SOROLOGIA 2", "HOSPITAL DE BASE",
+			    CC = "METODOS GRAFICOS - ADMIN", "HOSPITAL DE BASE",
+			    CC = "COMISSO REVISO DE PRONTUARIOS", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO-MICROBIOLOGIA", "HOSPITAL DE BASE",
+			    CC = "MICROBIOLOGIA", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO - HEMATOLOGIA", "HOSPITAL DE BASE",
+			    CC = "HEMATOLOGIA", "HOSPITAL DE BASE",
+			    CC = "LABORATORIO - SOROLOGIA 1", "HOSPITAL DE BASE",
+			    CC = "HOLTER", "HOSPITAL DE BASE",
+			    CC = "UROANALISE", "HOSPITAL DE BASE",
+			    CC = "BIOQUIMICA/LAB.CENTRAL", "HOSPITAL DE BASE",
+			    CC = "ELETRONEUROMIOGRAFIA", "HOSPITAL DE BASE",
+			    CC = "SECRETARIAS", "HOSPITAL DE BASE",
+			    CC = "CIRURGIA GERAL", "HOSPITAL DE BASE",
+			    CC = "AG.TRANSFUS.BCO SANGUE TERREO", "HOSPITAL DE BASE",
+			    CC = "NCLEO DE O.P.M.E.", "HOSPITAL DE BASE",
+			    CC = "HM ENFERMARIA CIRURGICA", "HOSPITAL MUNICIPAL",
+			    CC = "DIALISE - ADMINISTRACAO", "HOSPITAL DE BASE",
+			    CC = "UROLOGIA", "HOSPITAL DE BASE",
+			    CC = "UROLOGIA - AMBULATORIO", "HOSPITAL DE BASE",
+			    CC = "MARCENARIA", "HOSPITAL DE BASE",
+			    CC = "MAMOGRAFIA", "HOSPITAL DE BASE",
+			    CC = "6 ANDAR TRANSP.MED.OSSEA", "HOSPITAL DE BASE",
+			    CC = "EMER.PED.SUS/CONV-BL.A TERREO", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    CC = "RPA-REC. POS ANESTESIA 1", "HOSPITAL DE BASE",
+			    CC = "EMERGENCIA - ADM.ESTOQUES", "HOSPITAL DE BASE",
+			    CC = "LABORAT.- LAVAGEM E EXPUR", "HOSPITAL DE BASE",
+			    CC = "AVOHB", "HOSPITAL DE BASE",
+			
+			    // =========================================================
+			    // REGRAS POR PREFIXO
+			    // =========================================================
+			
+			    LEFT(CC, 2) = "PM", "PREFEITURA MUNICIPAL",
+			    LEFT(CC, 2) = "FF", "FUNFARME",
+			    LEFT(CC, 3) = "AMB", "AMBULATÓRIO",
+			    LEFT(CC, 2) = "HB", "HOSPITAL DE BASE",
+			    LEFT(CC, 3) = "HCM", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    LEFT(CC, 2) = "HF", "HF",
+			    LEFT(CC, 3) = "ESP", "ESPECIALIDADE",
+			    LEFT(CC, 6) = "CEDMAC", "FUNFARME",
+			    LEFT(CC, 5) = "EQUIP", "FUNFARME",
+			    LEFT(CC, 2) = "LM", "LUCY MONTORO",
+			    LEFT(CC, 4) = "HCCAT", "FUNFARME",
+			    LEFT(CC, 4) = "1091", "HOSPITAL DE BASE",
+			    LEFT(CC, 11) = "FP COAPRIMO", "FUNFARME",
+			    LEFT(CC, 3) = "CIP", "FUNFARME",
+			    LEFT(CC, 3) = "AME", "AME",
+			    LEFT(CC, 3) = "LMF", "FUNFARME",
+			    LEFT(CC, 2) = "FP", "FUNFARME",
+			
+			    LEFT(CC, 20) = "PORTARIA AMBULATORIO", "AMBULATÓRIO",
+			    LEFT(CC, 12) = "PORTARIA HCM", "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			    LEFT(CC, 19) = "NUCLEO DE SAUDE DIG", "FUNFARME",
+			    LEFT(CC, 13) = "MED FISIATRIA", "FUNFARME",
+			    LEFT(CC, 17) = "ACADEMIA FUNFARME", "FUNFARME",
+			    LEFT(CC, 26) = "GERENCIA SAUDE SUPLEMENTAR", "HOSPITAL DE BASE",
+			    LEFT(CC, 9) = "MARKETING", "FUNFARME",
+			    LEFT(CC, 18) = "CENTRAL DE PRORRO", "FUNFARME",
+			    LEFT(CC, 21) = "PRONTO ATENDIMENTO SUS", "HOSPITAL DE BASE",
+			    LEFT(CC, 22) = "ANGIOGRAFIA/HEMODINAMICA", "FUNFARME",
+			
+			    LEFT(CC, 26) = "ALMOXARIFADO AME FERNAND", "AME FERNANDÓPOLIS",
+			    LEFT(CC, 31) = "ALMOXARIFADO LUCY MONTORO FER", "AME FERNANDÓPOLIS",
+			    LEFT(CC, 15) = "ALMOXARIFADO S.N", "HOSPITAL DE BASE",
+			
+			    "OUTROS"
+			)
+		lineageTag: d0e79cf4-a522-4bb6-acd9-2d91654d3570
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CC Chave Limpa' =
+			
+			VAR Texto =
+			    UPPER(
+			        TRIM(
+			            'public fato_historico_ccusto'[descricao_centro_custo]
+			        )
+			    )
+			
+			VAR Limpo1 =
+			    SUBSTITUTE(Texto, ".", "")
+			
+			VAR Limpo2 =
+			    SUBSTITUTE(Limpo1, "-", "")
+			
+			VAR Limpo3 =
+			    SUBSTITUTE(Limpo2, "/", "")
+			
+			VAR Limpo4 =
+			    SUBSTITUTE(Limpo3, " ", "")
+			
+			VAR Limpo5 =
+			    SUBSTITUTE(Limpo4, "Á", "A")
+			
+			VAR Limpo6 =
+			    SUBSTITUTE(Limpo5, "À", "A")
+			
+			VAR Limpo7 =
+			    SUBSTITUTE(Limpo6, "Ã", "A")
+			
+			VAR Limpo8 =
+			    SUBSTITUTE(Limpo7, "Â", "A")
+			
+			VAR Limpo9 =
+			    SUBSTITUTE(Limpo8, "É", "E")
+			
+			VAR Limpo10 =
+			    SUBSTITUTE(Limpo9, "Ê", "E")
+			
+			VAR Limpo11 =
+			    SUBSTITUTE(Limpo10, "Í", "I")
+			
+			VAR Limpo12 =
+			    SUBSTITUTE(Limpo11, "Ó", "O")
+			
+			VAR Limpo13 =
+			    SUBSTITUTE(Limpo12, "Ô", "O")
+			
+			VAR Limpo14 =
+			    SUBSTITUTE(Limpo13, "Õ", "O")
+			
+			VAR Limpo15 =
+			    SUBSTITUTE(Limpo14, "Ú", "U")
+			
+			VAR Limpo16 =
+			    SUBSTITUTE(Limpo15, "Ç", "C")
+			
+			RETURN
+			    Limpo16
+		lineageTag: 36c9405c-ee7d-403b-ac46-da9fe810c954
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public fato_historico_ccusto' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_fato_historico_ccusto = Fonte{[Schema="public",Item="fato_historico_ccusto"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(public_fato_historico_ccusto,{{"id_cod_empresa", Int64.Type}, {"id_tipo_colaborador", Int64.Type}, {"cracha", Int64.Type}, {"id_centro_custo", Int64.Type}, {"data_inicio_cc", type date}, {"data_fim_cc", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

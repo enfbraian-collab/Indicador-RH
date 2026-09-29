@@ -1,0 +1,93 @@
+table 'public fato_historico_situacao'
+	lineageTag: 04912420-d02a-4bf8-88f2-16affee93f2a
+
+	column id_cod_empresa
+		dataType: string
+		lineageTag: a90fdb46-21d2-49cc-b22b-45d91e355e6e
+		summarizeBy: none
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_colaborador
+		dataType: string
+		lineageTag: 35335450-afb1-427a-b1ac-629841082310
+		summarizeBy: none
+		sourceColumn: id_tipo_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column cracha
+		dataType: string
+		lineageTag: f62bab52-3975-471c-902e-344da349757f
+		summarizeBy: none
+		sourceColumn: cracha
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_situacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 98ed8422-3229-4d46-80dc-d94aef96c4fe
+		summarizeBy: none
+		sourceColumn: id_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_situacao
+		dataType: string
+		lineageTag: ecaa9e8c-a75b-4695-acaa-d6615680b06b
+		summarizeBy: none
+		sourceColumn: descricao_situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_inicio_situacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 62ae3592-7dc6-4aa9-b96c-e4afb72d84cf
+		summarizeBy: none
+		sourceColumn: data_inicio_situacao
+
+		variation Variation
+			isDefault
+			relationship: 3a7c42b5-6cff-4b87-a583-a21c2f33c2ad
+			defaultHierarchy: LocalDateTable_b9286272-6a06-4130-9236-6f6cd1ea6959.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_fim_situacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 08459f9b-ce4c-4a54-8d6f-46baa4617412
+		summarizeBy: none
+		sourceColumn: data_fim_situacao
+
+		variation Variation
+			isDefault
+			relationship: 695217ce-f69f-415d-8ce5-0f1b4707139f
+			defaultHierarchy: LocalDateTable_cc916da4-8062-44b2-93a0-0a0cf8ad8594.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: 53a64e7f-6af0-471c-a2fb-e82b65f9aaa0
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public fato_historico_situacao' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_fato_historico_situacao = Fonte{[Schema="public",Item="fato_historico_situacao"]}[Data]
+				in
+				    public_fato_historico_situacao
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

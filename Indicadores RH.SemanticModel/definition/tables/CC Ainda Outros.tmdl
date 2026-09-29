@@ -1,0 +1,43 @@
+table 'CC Ainda Outros'
+	lineageTag: f20ef851-a051-45b1-9c05-0de01ad38305
+
+	column descricao_centro_custo
+		lineageTag: 7079ccd8-3793-467f-8513-a550f207fd15
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: public fato_historico_ccusto[descricao_centro_custo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CC Chave Limpa'
+		lineageTag: e747a011-1ccd-4233-894a-3f483a5961e7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: public fato_historico_ccusto[CC Chave Limpa]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Instituição CC Histórico'
+		lineageTag: abf6c22f-3689-4920-b107-21ff9a7009fd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: public fato_historico_ccusto[Instituição CC Histórico]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CC Ainda Outros' = calculated
+		mode: import
+		source =
+				
+				FILTER(
+				    SUMMARIZE(
+				        'public fato_historico_ccusto',
+				        'public fato_historico_ccusto'[descricao_centro_custo],
+				        'public fato_historico_ccusto'[CC Chave Limpa],
+				        'public fato_historico_ccusto'[Instituição CC Histórico]
+				    ),
+				    'public fato_historico_ccusto'[Instituição CC Histórico] = "OUTROS"
+				)
+
+	annotation PBI_Id = be4417dbe25b46e6a070611543119fc2
+

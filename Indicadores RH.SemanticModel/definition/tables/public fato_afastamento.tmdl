@@ -1,0 +1,99 @@
+table 'public fato_afastamento'
+	lineageTag: 161d13a0-d1b6-4fd3-b0cb-1d9e283d1b61
+
+	column id_cod_empresa
+		dataType: string
+		lineageTag: 36789d26-4738-4ece-8571-8d8a736eff5c
+		summarizeBy: none
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_colaborador
+		dataType: string
+		lineageTag: ce01ecec-4662-4766-988f-c935bb06da60
+		summarizeBy: none
+		sourceColumn: id_tipo_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column cracha
+		dataType: string
+		lineageTag: 711bb076-4847-4087-a8f1-7ccfe4000688
+		summarizeBy: none
+		sourceColumn: cracha
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_afastamento
+		dataType: int64
+		formatString: 0
+		lineageTag: e6aa51e3-c076-4181-96b8-422a5384047a
+		summarizeBy: sum
+		sourceColumn: id_afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_afastamento
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 87b942c0-465a-4b13-ad98-c513497bc49b
+		summarizeBy: none
+		sourceColumn: data_afastamento
+
+		variation Variation
+			isDefault
+			relationship: 58c095ac-fe73-4708-8488-818caa57d09c
+			defaultHierarchy: LocalDateTable_ed1b8ae7-2467-4d9b-b243-b3b87a38bdc9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_termino_afastamento
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 062ebd1e-6e17-497d-b25d-0d68b6e81804
+		summarizeBy: none
+		sourceColumn: data_termino_afastamento
+
+		variation Variation
+			isDefault
+			relationship: 8100437e-3ee9-4c3e-acdd-7411f5d5bcac
+			defaultHierarchy: LocalDateTable_c77db5ca-35ec-40e2-acf9-86036c6174e8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_prev_termino_afastamento
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b17551dc-1697-4f51-a855-4d3e2900fa3d
+		summarizeBy: none
+		sourceColumn: data_prev_termino_afastamento
+
+		variation Variation
+			isDefault
+			relationship: 786a3f98-e134-4b93-bb08-ccb8966b6d59
+			defaultHierarchy: LocalDateTable_6c3e71f3-6445-4f9f-9226-41b2117d2e16.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: 766bee77-3255-4154-8e56-7b38882efcdf
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public fato_afastamento' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_fato_afastamento = Fonte{[Schema="public",Item="fato_afastamento"]}[Data]
+				in
+				    public_fato_afastamento
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

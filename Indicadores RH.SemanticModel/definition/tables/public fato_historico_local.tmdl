@@ -1,0 +1,142 @@
+table 'public fato_historico_local'
+	lineageTag: 5aad4c78-29ec-4bd1-a56c-727e56de2a49
+
+	column id_cod_empresa
+		dataType: int64
+		formatString: 0
+		lineageTag: c93853b1-b54b-45c2-8ace-ae6f72dfda43
+		summarizeBy: sum
+		sourceColumn: id_cod_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tipo_colaborador
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ba4400a-eef4-43a4-995f-fad420e23060
+		summarizeBy: sum
+		sourceColumn: id_tipo_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column cracha
+		dataType: int64
+		formatString: 0
+		lineageTag: f668baad-e751-4fb8-861b-67bb4d84f0c6
+		summarizeBy: sum
+		sourceColumn: cracha
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_local
+		dataType: int64
+		formatString: 0
+		lineageTag: ec39dc55-0628-428f-92f6-820cc6c9cce5
+		summarizeBy: sum
+		sourceColumn: id_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_local
+		dataType: string
+		lineageTag: 2f2bb64e-2bfb-4a24-abba-46a1b5a426e8
+		summarizeBy: none
+		sourceColumn: descricao_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_inicio_local
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 661d9011-7e57-4e4f-97c2-af54043b4a9e
+		summarizeBy: none
+		sourceColumn: data_inicio_local
+
+		variation Variation
+			isDefault
+			relationship: 670ea376-d822-45de-8309-ceeadefbc079
+			defaultHierarchy: LocalDateTable_6a07f93e-32e6-4e61-8b52-84e5d2a62a96.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_fim_local
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 57e82f4a-c624-4d83-ba49-9e2a964c7b78
+		summarizeBy: none
+		sourceColumn: data_fim_local
+
+		variation Variation
+			isDefault
+			relationship: 953f9eb4-4b9a-4c60-a97a-80a648297f37
+			defaultHierarchy: LocalDateTable_1d6aefb6-765c-4401-8790-5e4c1c1e73f9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sk_colaborador
+		dataType: string
+		lineageTag: 8e1aa787-c67d-47ee-8764-ec0a9e4c1eba
+		summarizeBy: none
+		sourceColumn: sk_colaborador
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unidade Agrupada Histórico' =
+			
+			SWITCH(
+			    TRUE(),
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "CRIANÇA") ||
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "HCM"),
+			    "HOSPITAL DA CRIANÇA E MATERNIDADE",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "AMBULATÓRIO") ||
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "AMBULATORIO"),
+			    "AMBULATÓRIO",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "HEMOCENTRO"),
+			    "HEMOCENTRO",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "MUNICIPAL") ||
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "HM "),
+			    "HOSPITAL MUNICIPAL",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "AME"),
+			    "AME FERNANDOPOLIS",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "LUCY") &&
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "FERNANDOPOLIS"),
+			    "LUCY MONTORO FERNANDOPOLIS",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "LUCY"),
+			    "LUCY MONTORO RIO PRETO",
+			
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "BASE") ||
+			    CONTAINSSTRING('public fato_historico_local'[descricao_local], "HB "),
+			    "HOSPITAL DE BASE",
+			
+			    "OUTROS"
+			)
+		lineageTag: 61b8644b-3f84-4192-aa09-c8a7f2a9c289
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public fato_historico_local' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40", [CommandTimeout=#duration(0, 2, 0, 0)]),
+				    public_fato_historico_local = Fonte{[Schema="public",Item="fato_historico_local"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(public_fato_historico_local,{{"id_cod_empresa", Int64.Type}, {"id_tipo_colaborador", Int64.Type}, {"cracha", Int64.Type}, {"id_local", Int64.Type}, {"descricao_local", type text}, {"data_inicio_local", type date}, {"data_fim_local", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

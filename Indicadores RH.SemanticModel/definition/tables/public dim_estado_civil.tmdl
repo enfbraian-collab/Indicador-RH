@@ -1,0 +1,36 @@
+table 'public dim_estado_civil'
+	lineageTag: ee605ffe-9228-4e7c-9ae2-ef809c019f92
+
+	column id_estado_cv
+		dataType: int64
+		lineageTag: dd7ce55c-8a5d-49b3-a87b-2049c101e5c9
+		summarizeBy: none
+		sourceColumn: id_estado_cv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descricao_estado_civil
+		dataType: string
+		lineageTag: 00415d77-41e7-49d7-9301-3bbd26ee8201
+		summarizeBy: none
+		sourceColumn: descricao_estado_civil
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public dim_estado_civil' = m
+		mode: import
+		source =
+				let
+				    Fonte = PostgreSQL.Database("10.10.10.22", "rh_40"),
+				    public_dim_estado_civil = Fonte{[Schema="public",Item="dim_estado_civil"]}[Data],
+				    #"Duplicatas Removidas" = Table.Distinct(public_dim_estado_civil, {"id_estado_cv"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"id_estado_cv", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+
