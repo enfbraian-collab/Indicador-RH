@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "90b781e00d67ac312dda",
   "position": {
     "x": 286.56824208685185,
@@ -203,37 +203,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6709176be32aa0c47776",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public.dCalendario"
-              }
-            },
-            "Property": "Mês Nome"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6c8d9f87c19deb43a510",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public fato_apuracao"
-              }
-            },
-            "Property": "4Taxa Absenteísmo mês"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

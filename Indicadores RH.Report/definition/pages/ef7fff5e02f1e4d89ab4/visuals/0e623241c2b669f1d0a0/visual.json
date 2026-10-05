@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "0e623241c2b669f1d0a0",
   "position": {
     "x": 9.97998572895456,
     "y": 374.96232095929275,
-    "z": 8000,
+    "z": 7000,
     "height": 89.819871560591039,
     "width": 242.37108198889644,
-    "tabOrder": 8000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -194,23 +194,5 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "aec42d1de6a087d07b1b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "RELATORIO_NILVANA"
-              }
-            },
-            "Property": "EMPRESA"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

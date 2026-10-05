@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "4a0f6a0c86c64bc8f6b8",
   "position": {
     "x": 15.421686746987952,
@@ -194,23 +194,5 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "14a3977298d29ec05ad4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public dim_centro_custo"
-              }
-            },
-            "Property": "descricao_centro_custo"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

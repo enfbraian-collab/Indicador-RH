@@ -15,7 +15,7 @@ queryGroup 'Erros na Consulta - 09/08/2026 13:05:17'
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["public fato_apuracao","public dim_cargo","public dim_centro_custo","public dim_colaborador","public dim_empresa","public dim_escala","public dim_estado_civil","public dim_filial","public dim_raca","public dim_situacao","public dim_situacao_apuracao","public dim_tipo_colaborador","public dim_tipo_contrato","_medidas_turnover","_Medidas_turnover (2)","public fato_historico_cargo","public fato_historico_ccusto","public fato_historico_local","Erros em public fato_apuracao","RELATORIO_NILVANA","Atestados","Descrição_CIDs","public dim_local","public dim_tipo_afastamento","public fato_afastamento","public fato_historico_situacao","public dim_apuracao_situacao","ControleCarga"]
+annotation PBI_QueryOrder = ["public fato_apuracao","public dim_cargo","public dim_colaborador","public dim_empresa","public dim_escala","public dim_estado_civil","public dim_filial","public dim_raca","public dim_situacao","public dim_situacao_apuracao","public dim_tipo_colaborador","public dim_centro_custo","public dim_tipo_contrato","_medidas_turnover","_Medidas_turnover (2)","public fato_historico_cargo","public fato_historico_ccusto","public fato_historico_local","Erros em public fato_apuracao","RELATORIO_NILVANA","Atestados","Descrição_CIDs","public dim_local","public dim_tipo_afastamento","public fato_afastamento","public fato_historico_situacao","public dim_apuracao_situacao","ControleCarga","RELATORIO_NILVANA(1)"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -70,6 +70,11 @@ ref table ControleCarga
 ref table LocalDateTable_fdcaad0e-b294-430b-aad8-9bbf53abddee
 ref table LocalDateTable_54db9150-4a2c-484a-a2d3-bb6276362f20
 ref table LocalDateTable_bfd5589d-df74-4935-b7e3-971e568c5b0d
+ref table RELATORIO_NILVANA(1)
+ref table LocalDateTable_c2bf5b3b-e044-4d94-9506-0d91aee014f8
+ref table LocalDateTable_2f0c951e-4e9f-4d28-a239-f0a9d69bd292
+ref table LocalDateTable_39fd7da2-5ac6-4bfb-a898-6224ee4d651d
+ref table LocalDateTable_47ecd965-4555-4e17-9b2d-8a436d156799
 
 ref cultureInfo pt-BR
 

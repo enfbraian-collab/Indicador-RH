@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "7b5dc864fc6c14fde59a",
   "position": {
     "x": 787.80573373478194,
     "y": 471.71828773399659,
-    "z": 3000,
+    "z": 2000,
     "height": 225.60439848147661,
     "width": 477.75049090195051,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -373,25 +373,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "c6d40cc984d5789e1ea8",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Atestados"
-                  }
-                },
-                "Property": "Protocolo"
-              }
-            },
-            "Function": 2
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

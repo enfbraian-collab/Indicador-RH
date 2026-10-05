@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "0414ddc760cc636b01a6",
   "position": {
     "x": 353.02531914740308,
@@ -317,28 +317,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "f9f409d02b7454945d2b",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "eac64da28e61ebb63d60",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Atestados"
-                  }
-                },
-                "Property": "Tempo Real em Dias"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "f9f409d02b7454945d2b"
 }

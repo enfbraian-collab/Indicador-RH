@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "20bf663150d57838b3b6",
   "position": {
     "x": 788.87859128822981,
@@ -238,37 +238,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6fbf6d6ac54dbac77329",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public.dCalendario"
-              }
-            },
-            "Property": "Mês Nome"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1e2dbdbdcb1609504280",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "public fato_apuracao"
-              }
-            },
-            "Property": "4Custo Absenteísmo"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
